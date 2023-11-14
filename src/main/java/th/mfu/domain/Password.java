@@ -12,9 +12,8 @@ public class Password {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private String password_id;
-    private Long std_id;
+    private String std_id;
     private Long lec_id;
     private long admin_id;
 
@@ -23,6 +22,22 @@ public class Password {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Student student;
+
+    public Lecturer getLecturer() {
+        return lecturer;
+    }
+
+    public void setLecturer(Lecturer lecturer) {
+        this.lecturer = lecturer;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     public Password(){
         
@@ -36,11 +51,11 @@ public class Password {
         this.password_id = password_id;
     }
 
-    public Long getStd_id() {
+    public String getStd_id() {
         return std_id;
     }
 
-    public void setStd_id(Long std_id) {
+    public void setStd_id(String std_id) {
         this.std_id = std_id;
     }
 

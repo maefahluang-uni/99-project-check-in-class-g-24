@@ -14,7 +14,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int std_num;
-    private int std_id;
+    private String std_id;
     private String std_firstname;
     private String std_lastname;
     private String std_email;
@@ -35,11 +35,11 @@ public class Student {
         this.std_num = std_num;
     }
 
-    public int getStd_id() {
+    public String getStd_id() {
         return std_id;
     }
 
-    public void setStd_id(int std_id) {
+    public void setStd_id(String std_id) {
         this.std_id = std_id;
     }
 

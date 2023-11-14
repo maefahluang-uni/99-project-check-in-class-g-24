@@ -1,29 +1,21 @@
 package th.mfu;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import th.mfu.Reposistory.CourseRepository;
 import th.mfu.Reposistory.LecturerRepository;
 import th.mfu.Reposistory.PasswordRepository;
+import th.mfu.Reposistory.SectionRepository;
 import th.mfu.Reposistory.StudentRepository;
+import th.mfu.domain.Course;
 import th.mfu.domain.Password;
+import th.mfu.domain.Section;
 import th.mfu.domain.Student;
 
 
@@ -42,6 +34,9 @@ public class ClassController {
     @Autowired
     PasswordRepository passwordrepo;
 
+    @Autowired
+    SectionRepository sectionrepo;
+
     //This method will map when the mapping is not matched with all the mapping method 
     @GetMapping("/**")
     public String login(){
@@ -49,24 +44,35 @@ public class ClassController {
     }
 
     @PostMapping("/login")
-    public String loginprocess(@PathVariable Long student_email,@PathVariable String password,Model model){
+    public String loginprocess(@PathVariable String user_email, @PathVariable String password, Model model) {
 
-        Student user = studentrepo.findById(student_email).get();
-        Password pw = passwordrepo.findById(user).get();
+        Student user = studentrepo.findById(user_email).get();
+        Password pw = passwordrepo.findById(user.getStd_id()).orElse(null);
 
-        if (user.getStd_email().equals(student_email) && pw.getPassword_id().equals(password)) {
+        //need to change entity relation of course(can't find the course_id from student_entity)
 
-            model.addAttribute("student_firstname",student_firstname);
-            model.addAttribute("student_lastname",student_lastname);
-            model.addAttribute("useremail", student_email);
+        // Section sec = sectionrepo.findById(user_email).orElse(null);
+        Course c = new Course();
+        Section s = new Section();
+    
+        if (user != null && password.equals(pw.getPassword_id())) {
+            // Valid login
+            model.addAttribute("student_firstname", user.getStd_firstname());
+            model.addAttribute("student_lastname", user.getStd_lastname());
+            model.addAttribute("useremail", user_email);
+
+            model.addAttribute("course_cose", c.getCourse_id());
+            model.addAttribute("course_name", c.getCourse_name());
+            model.addAttribute("course_section", s.getSec_id());
+
+
             return "viewcourse";
-
         } else {
-
-            return "redirect:/login"; 
+            // Invalid login
+            return "redirect:/login";
         }
-        
     }
+    
 
     //To view courses by the specific id
     @GetMapping("/class/{student_id}")
