@@ -1,27 +1,34 @@
 package th.mfu.domain;
 
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
+// @Table(name = "student")
 public class Student {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    // @Id
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int std_num;
-    private String std_id;
+    private Long std_id;
     private String std_firstname;
     private String std_lastname;
+    @Id
     private String std_email;
     private int sec_id;
 
+    // @ManyToMany(cascade = CascadeType.ALL)
+    // private List<Section> section;
+
     @ManyToMany(cascade = CascadeType.ALL)
-    private Section section;;
+    private List<Section> section;
+
 
     public Student(){
 
@@ -35,11 +42,11 @@ public class Student {
         this.std_num = std_num;
     }
 
-    public String getStd_id() {
+    public Long getStd_id() {
         return std_id;
     }
 
-    public void setStd_id(String std_id) {
+    public void setStd_id(Long std_id) {
         this.std_id = std_id;
     }
 
@@ -72,7 +79,8 @@ public class Student {
     }
 
     public void setSec_id(int sec_id) {
-        this.sec_id = sec_id;
+
+        this.sec_id=sec_id;
     }
 
     
