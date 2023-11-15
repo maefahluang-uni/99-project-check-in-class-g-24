@@ -11,7 +11,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-// @Table(name = "lecturer")
 public class Lecturer {
     
     @Id
@@ -20,6 +19,7 @@ public class Lecturer {
     private String lec_firstname;
     private String lec_lastname;
     private String lec_email;
+    private String lec_password;
 
     @ManyToMany(cascade = CascadeType.ALL)    
     private List<Section> section;
@@ -28,9 +28,19 @@ public class Lecturer {
         
     }
 
-    public String getLec_id() {
-        return Lec_id;
+    
+
+    public String getLec_password() {
+        return lec_password;
     }
+
+    public void setLec_password(String lec_password) {
+        this.lec_password = lec_password;
+    }
+
+    public String getLec_id() {
+            return Lec_id;
+        }
 
     public void setLec_id(String lec_id) {
         Lec_id = lec_id;
@@ -58,6 +68,14 @@ public class Lecturer {
 
     public void setLec_email(String lec_email) {
         this.lec_email = lec_email;
+    }
+
+    public List<Section> getSection() {
+        return section;
+    }
+
+    public void setSection(List<Section> section) {
+        this.section = section;
     }
 
     

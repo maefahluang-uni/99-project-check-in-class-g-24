@@ -10,7 +10,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-// @Table(name = "student")
 public class Student {
 
     private int std_num;
@@ -20,13 +19,26 @@ public class Student {
     @Id
     private String std_email;
     private int sec_id;
+    private String std_password;
 
-    // @ManyToMany(cascade = CascadeType.ALL)
-    // private List<Section> section;
+    public String getStd_password() {
+        return std_password;
+    }
+
+    public void setStd_password(String std_password) {
+        this.std_password = std_password;
+    }
+
+    public List<Section> getSection() {
+        return section;
+    }
+
+    public void setSection(List<Section> section) {
+        this.section = section;
+    }
 
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Section> section;
-
 
     public Student(){
 
