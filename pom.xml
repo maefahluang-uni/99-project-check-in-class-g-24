@@ -47,6 +47,7 @@
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-thymeleaf</artifactId>
       </dependency>
+      
       <!-- Spring JPA  --> 
       <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -73,7 +74,7 @@
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
         <scope>runtime</scope>
-    </dependency>
+    </dependency> 
 
      <!-- Add CloudSQL Starter for MySQL -->
      <!-- <dependency>

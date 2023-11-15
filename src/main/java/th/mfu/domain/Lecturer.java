@@ -1,26 +1,28 @@
 package th.mfu.domain;
 
+import java.util.List;
 import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
+// @Table(name = "lecturer")
 public class Lecturer {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private String Lec_id;
+    
     private String lec_firstname;
     private String lec_lastname;
     private String lec_email;
 
-    @OneToMany(cascade = CascadeType.ALL)    
-    private Section section;
+    @ManyToMany(cascade = CascadeType.ALL)    
+    private List<Section> section;
 
     public Lecturer(){
         

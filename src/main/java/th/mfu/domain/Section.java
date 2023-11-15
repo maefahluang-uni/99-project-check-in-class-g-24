@@ -1,27 +1,26 @@
 package th.mfu.domain;
 
-
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+
+
 @Entity
 public class Section {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int sec_id;
+    
     private int course_id;
     private String Lec_id;
     private int sec_no;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private Course course;
-
+    private List< Course > course;
     
 
     public Section(){

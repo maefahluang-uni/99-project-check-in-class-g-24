@@ -13,8 +13,6 @@ import javax.persistence.Table;
 // @Table(name = "student")
 public class Student {
 
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int std_num;
     private Long std_id;
     private String std_firstname;

@@ -6,7 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-// @Table(name = "password")
 public class Password {
     
     @Id
