@@ -15,6 +15,7 @@ import th.mfu.Reposistory.CourseRepository;
 import th.mfu.Reposistory.LecturerRepository;
 import th.mfu.Reposistory.StudentRepository;
 import th.mfu.domain.Lecturer;
+import th.mfu.domain.Login_acc;
 import th.mfu.domain.Student;
 import th.mfu.domain.AdminC;
 // import th.mfu.Reposistory.PasswordRepository;
@@ -24,11 +25,10 @@ import th.mfu.domain.AdminC;
 @Controller
 public class ClassController {
 
+    
+
     @Autowired
     private StudentRepository studentRepo;
-
-    // @Autowired
-    // private PasswordRepository passwordRepo;
 
     @Autowired 
     private AdminCReposistory adminRepo;
@@ -36,82 +36,40 @@ public class ClassController {
     @Autowired
     private LecturerRepository lecturerrepo;
 
-    @GetMapping("/login")
-    public String login() {
+    @Autowired
+    private CourseRepository courserepo;
 
+    @GetMapping("/login")
+    public String login(Model model) {
+
+        model.addAttribute("user", new Login_acc());
         return "login";
     }
 
     @PostMapping("/login")
-    public String loginProcess(@RequestParam String email, @RequestParam String password, Model model) {
+    public String slogin(@ModelAttribute Login_acc user,Model model){
 
-        Student S_user = studentRepo.findById(email).get();
-        Lecturer L_user = lecturerrepo.findById(email).get();
-        AdminC A_user = adminRepo.findById(email).get();
-
-
-    //    if(!(A_user.equals(null)) ){
-
-    //         return "admin_dashboard";
-
-    //    }else if (!(S_user.equals(null)) ){
-            
-    //         if (S_user.getStd_password().equals(password)) {
-
-    //             // model.addAttribute("std_firstname", S_user.getStd_firstname());
-    //             // model.addAttribute("std_lastname", S_user.getStd_lastname());
-    //             // model.addAttribute("std_email", S_user.getStd_email());
-
-    //             // return "viewcourse/{" + S_user.getStd_id()+"}";
-    //             return "";
-
-    //         }
-
-    //     }else if(!(L_user.equals(null)) ) {
-
-    //         if(L_user.getLec_password().equals(password)){
-
-    //             model.addAttribute("lec_firstname",L_user.getLec_firstname());
-    //             model.addAttribute("lec_lastname",L_user.getLec_lastname());
-    //             model.addAttribute("lec_email", L_user.getLec_email());
-
-    //             return "viewcourse/{" + L_user.getLec_id()+"}";
-
-    //         }
-    //     }
-
-        return "test";
-
+        String email = user.getEmail();
+        System.out.println(email);
+        return "redirect:/viewcourse/" + email ;
+        
     }
 
-    @GetMapping("/viewcourse/{user_id}")
-    public String book(@PathVariable Long studentId, Model model) {
-        // Implement logic to display information about the student with the given ID
-        return "view-course";
-    }
-    //  @GetMapping("/viewcourse")
-    // public String boo() {
-    //     // Implement logic to display information about the student with the given ID
-    //     return "view-course";
-    // }
+    @GetMapping("viewcourse/{std_email}")
+    public String sview(@PathVariable String std_email,Model model){
 
-    @GetMapping("/add-student")
-    public String addStudentForm(Model model) {
-        model.addAttribute("student", new Student());
-        return "add-student-form";
+        Lecturer lec = lecturerrepo.findByLec_email(std_email);
+        model.addAttribute("lecturer", lec);
+        System.out.println("----------------------------------------------------------");
+        System.out.println(lec.getLec_id());
+        System.out.println( courserepo.findAllByLecId( lec.getLec_id() ) );        
+        System.out.println("----------------------------------------------------------");
+
+        model.addAttribute("courses",courserepo.findAllByLecId( "LEC001"));
+
+        return "viewcourse";
     }
 
-    @PostMapping("/students")
-    public String saveStudent(@ModelAttribute Student student) {
-        // Implement logic to save the student
-        studentRepo.save(student);
-        return "redirect:/student-list";
-    }
 
-    @GetMapping("/students")
-    public String studentList(Model model) {
-        model.addAttribute("students", studentRepo.findAll());
-        return "students-list";
-    }
 }
 

@@ -112,17 +112,17 @@
     <body>
         <div class="nav">
             <h1>Check-in Class</h1>
-            <!-- <div class="profile">
+            <div class="profile">
                 <div class="icon"><a href="profile.html"><i class="fas fa-user-circle"></i></a></div>
-                <div class="info">
-                    <p><a href="profile.html">Geogre</a></p>
-                    <p><a href="profile.html">65xxxxxxx@lamduan.mfu.ac.th</a></p>
+                <div class="info" th:object="${lecturer}">
+                    <p><a href="profile.html"><span th:text="${lecturer.lec_firstname}"></span><span th:text="${lecturer.lec_lastname}"></span> </a></p>
+                    <p><a href="profile.html"><span th:text="${lecturer.lec_email}"></span> </a></p>
                 </div>
             </div>
             <div class="btn">
                 <p><a class="course" href="view_course.html">My Course</a></p>
                 <span></span>
-            </div> -->
+            </div>
             
         </div>
 
@@ -133,12 +133,11 @@
             <ul>  
                 <p>Hello from view course</p>
                            
-                <!-- <li class="title" th:each="course : ${courses}">
-                    <span th:text="${course.code}"></span> 
-                    <span th:text="${course.name}"></span>
-                    <span th:text="${course.section}"></span>
-                </li> -->
-    
+                <li class="title" th:each="course : ${courses}">
+                    <span th:text="${course.course_id}"></span> 
+                    <span th:text="${course.course_name}"></span>
+                    <span th:text="${course.credit}"></span>
+                </li>
             </ul>
         </div>
     </body>

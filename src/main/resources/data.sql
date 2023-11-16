@@ -12,7 +12,7 @@ INSERT INTO Lecturer (Lec_id, lec_firstname, lec_lastname, lec_email, lec_passwo
 
 -- Student data
 INSERT INTO Student (std_num, std_id, std_firstname, std_lastname, std_email, sec_id, std_password) VALUES
-(1, 1001, 'John', 'Doe', 'john.doe@example.com', 1, 'password1'),
+(1, 1001, 'John', 'Doe', 'john.doe@example.com', 1, 'p1'),
 (2, 1002, 'Jane', 'Smith', 'jane.smith@example.com', 2, 'password2'),
 (3, 1003, 'Bob', 'Johnson', 'bob.johnson@example.com', 1, 'password3');
 
@@ -25,10 +25,10 @@ INSERT INTO Section (sec_id, course_id, Lec_id, sec_no) VALUES
 
 
 -- Course data
-INSERT INTO Course (course_id, course_name, credit) VALUES
-(101, 'Mathematics', 3),
-(102, 'History', 3),
-(103, 'Physics', 3);
+INSERT INTO Course (course_id, course_name, credit,Lec_id) VALUES
+(101, 'Mathematics', 3,'LEC001'),
+(102, 'History', 3,'LEC001'),
+(103, 'Physics', 3,'LEC001');
 
 -- Attendance data
 INSERT INTO Attendance (attendance_id, course_id, sec_id, std_num, date, status, week_no) VALUES

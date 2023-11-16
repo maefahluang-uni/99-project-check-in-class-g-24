@@ -3,11 +3,9 @@ package th.mfu.domain;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+
 
 
 @Entity
@@ -15,7 +13,23 @@ public class Course {
     
     @Id
     private int course_id;
-    
+    private String Lec_id;
+    public String getLec_id() {
+        return Lec_id;
+    }
+
+    public void setLec_id(String lec_id) {
+        Lec_id = lec_id;
+    }
+
+    public List<Lecturer> getLecturer() {
+        return Lecturer;
+    }
+
+    public void setLecturer(List<Lecturer> lecturer) {
+        Lecturer = lecturer;
+    }
+
     private String course_name;
     private int credit;
 

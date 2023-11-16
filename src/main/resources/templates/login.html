@@ -183,15 +183,15 @@
             <div class="join-section">
                 <div class="join-heading">Login to Check-In Class</div>
                 <div class="login_box">
-                    <form action="/login" method="post">
+                    <form th:action="@{/login}" method="post" th:object="${user}">
                         <div class="mail_div">
-                            <label for="email">Lamduan Email:</label><br />
-                            <input type="email" id="email" name="email" required/>
+                            <label for="std_email">Lamduan Email:</label><br />
+                          <input type="email" id="std_email" th:field="*{email}" required/>
                             <br> <br> <br>
                         </div> 
                         <div class="pw_div">
-                            <label for="password">Password:</label><br />
-                            <input type="password" id="password" name="password" required/>
+                            <label for="std_password">Password:</label><br />
+                            <input type="password" id="std_password" th:field="*{password}" required/>
                             <br><br><br>
                         </div>
                         <div class="login_button">
