@@ -14,6 +14,14 @@ public class Course {
     @Id
     private int course_id;
     private String Lec_id;
+
+    private String course_name;
+    private int credit;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Lecturer> Lecturer;
+
+    
     public String getLec_id() {
         return Lec_id;
     }
@@ -30,11 +38,7 @@ public class Course {
         Lecturer = lecturer;
     }
 
-    private String course_name;
-    private int credit;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Lecturer> Lecturer;
+    
 
     public Course(){
 

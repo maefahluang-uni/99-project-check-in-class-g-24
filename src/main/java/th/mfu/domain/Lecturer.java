@@ -14,21 +14,20 @@ import javax.persistence.Table;
 public class Lecturer {
     
     @Id
-    private String Lec_id;
+    private String lec_email;
     
+    private String Lec_id;
     private String lec_firstname;
     private String lec_lastname;
-    private String lec_email;
     private String lec_password;
 
     @ManyToMany(cascade = CascadeType.ALL)    
     private List<Section> section;
 
+    
     public Lecturer(){
         
     }
-
-    
 
     public String getLec_password() {
         return lec_password;
@@ -78,6 +77,4 @@ public class Lecturer {
         this.section = section;
     }
 
-    
-    
 }

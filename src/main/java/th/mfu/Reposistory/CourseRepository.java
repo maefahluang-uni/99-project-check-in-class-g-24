@@ -11,7 +11,13 @@ import th.mfu.domain.Course;
 @Repository
 public interface CourseRepository extends JpaRepository<Course,Integer>{
 
-    @Query(value = "SELECT * FROM Course WHERE Lec_id = :lecId", nativeQuery = true)
-    List<Course> findAllByLecId(@Param("lecId") String lecId);
+    @Query(value = "SELECT * FROM Course WHERE Lec_id = :Lec_id", nativeQuery = true)
+    List<Course> findAllByLecId(@Param("Lec_id") String Lec_id);
+
+    @Query(value = "SELECT * FROM Course WHERE lec_email = :lec_email", nativeQuery = true)
+    List<Course> findAllByLec_email(@Param("lec_email") String lec_email);
     
+    @Query(value = "SELECT * FROM Course WHERE std_email = :std_email", nativeQuery = true)
+    List<Course> findAllByStd_emailCourses(@Param("std_email") String std_email);    
+
 }

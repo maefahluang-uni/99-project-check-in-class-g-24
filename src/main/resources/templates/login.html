@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -136,71 +136,26 @@
           <div class="join-heading">Join Check-In Class</div>
           <div class="login_box">
 
-            <form>
+            <form th:action="@{/login}" method="post" th:object="${user}">
               <div class="mail_div">
-                <label for="email">Lamduan Email:</label><br />
-                <input type="email" id="email" name="email" required/>
-                <br> <br> <br>
+                  <label for="std_email">Lamduan Email:</label><br />
+                <input type="email" id="std_email" th:field="*{email}" required/>
+                  <br> <br> <br>
               </div> 
               <div class="pw_div">
-                <label for="password">Password:</label><br />
-                <input type="password" id="password" name="password" required/>
-                <br><br><br>
+                  <label for="std_password">Password:</label><br />
+                  <input type="password" id="std_password" th:field="*{password}" required/>
+                  <br><br><br>
               </div>
-              <div class="login_button" >
-                <a href="th:href="@{/login/{email,password}(email=${concert.id},password=$())}"" >Login</a>
+              <div class="login_button">
+                  <button type="submit">Login</button>
               </div>
-            </form>
+          </form>
           
           </div>
         </div>
       </div>
     </div>
   </body>
-</html> -->
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <!-- Add your CSS styles here -->
-</head>
-<body>
-    <div class="container">
-        <div class="background">
-            <!-- Background Elements -->
-        </div>
-        <div class="content">
-            <div class="heading">WELCOME TO CHECK IN CLASS</div>
-            <div class="description">
-                <!-- Your description here -->
-            </div>
-            <div class="join-section">
-                <div class="join-heading">Login to Check-In Class</div>
-                <div class="login_box">
-                    <form th:action="@{/login}" method="post" th:object="${user}">
-                        <div class="mail_div">
-                            <label for="std_email">Lamduan Email:</label><br />
-                          <input type="email" id="std_email" th:field="*{email}" required/>
-                            <br> <br> <br>
-                        </div> 
-                        <div class="pw_div">
-                            <label for="std_password">Password:</label><br />
-                            <input type="password" id="std_password" th:field="*{password}" required/>
-                            <br><br><br>
-                        </div>
-                        <div class="login_button">
-                            <button type="submit">Login</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
 </html>
+

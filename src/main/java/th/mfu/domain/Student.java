@@ -12,14 +12,38 @@ import javax.persistence.Table;
 @Entity
 public class Student {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int std_num;
     private Long std_id;
     private String std_firstname;
     private String std_lastname;
-    @Id
     private String std_email;
     private int sec_id;
     private String std_password;
+    private int c_id;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Course> course;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Section> section;
+
+    public int getC_id() {
+        return c_id;
+    }
+
+    public void setC_id(int c_id) {
+        this.c_id = c_id;
+    }
+
+    public List<Course> getCourse() {
+        return course;
+    }
+
+    public void setCourse(List<Course> course) {
+        this.course = course;
+    }
 
     public String getStd_password() {
         return std_password;
@@ -36,9 +60,6 @@ public class Student {
     public void setSection(List<Section> section) {
         this.section = section;
     }
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Section> section;
 
     public Student(){
 
