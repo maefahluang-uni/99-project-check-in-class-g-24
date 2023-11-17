@@ -28,12 +28,12 @@ INSERT INTO attendance (attendance_id, course_id, sec_id, std_num, date, status,
 
 -- Inserting dummy data for AdminC table
 INSERT INTO adminc (admin_email, admin_password) VALUES 
-('admin@example.com', 'adminPass123');
+('admin@example.com', 'a1');
 
 -- Inserting dummy data for Student table
 INSERT INTO student (std_num, std_id, std_firstname, std_lastname, std_email, sec_id, std_password, c_id)
 VALUES
-  (1, 1001, 'Student1', 'Lastname1', 'student1@example.com', 1, 'studentPass1', 101),
+  (1, 1001, 'Student1', 'Lastname1', 's1@example.com', 1, 's1', 101),
   (2, 1002, 'Student2', 'Lastname2', 'student2@example.com', 2, 'studentPass2', 102),
   (3, 1003, 'Student3', 'Lastname3', 'student3@example.com', 1, 'studentPass3', 103),
   (4, 1001, 'Student1', 'Lastname1', 'student1@example.com', 1, 'studentPass1', 104),

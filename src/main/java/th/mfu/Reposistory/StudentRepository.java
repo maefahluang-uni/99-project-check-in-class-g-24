@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
+import th.mfu.domain.Section;
 import th.mfu.domain.Student;
 
 @Repository

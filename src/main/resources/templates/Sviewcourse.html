@@ -115,12 +115,12 @@
             <div class="profile">
                 <div class="icon"><a href="profile.html"><i class="fas fa-user-circle"></i></a></div>
                 <div class="info" th:object="${student}">
-                    <p><a href="profile.html"><span th:text="${student.student}"></span><span th:text="${student.std_lastname}"></span> </a></p>
-                    <p><a href="profile.html"><span th:text="${student.std_email}"></span> </a></p>
+                    <p><a href="profile.html"><span th:text="${std.student}"></span><span th:text="${std.std_lastname}"></span> </a></p>
+                    <p><a href="profile.html"><span th:text="${std.std_email}"></span> </a></p>
                 </div>
             </div>
             <div class="btn">
-                <p><a class="course" href="Lviewcourse.html">My Course</a></p>
+                <p><a class="course" href="Sviewcourse.html">My Course</a></p>
                 <span></span>
             </div>
             
@@ -130,11 +130,11 @@
         </div>
         <br>
         <div class="allcourses">
-            <ul>                             
+            <ul th:each="student : ${students}">                             
                 <li class="title" th:each="course : ${courses}">
                     <span th:text="${course.course_id}"></span> 
                     <span th:text="${course.course_name}"></span>
-                    <span th:text="${course.credit}"></span>
+                    <span th:text="${student.sec_id}"></span>
                 </li>
             </ul>
         </div>
