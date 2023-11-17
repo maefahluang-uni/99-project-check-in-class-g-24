@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import th.mfu.domain.Course;
+import th.mfu.domain.Student;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course,Integer>{
@@ -16,8 +17,6 @@ public interface CourseRepository extends JpaRepository<Course,Integer>{
 
     @Query(value = "SELECT * FROM Course WHERE lec_email = :lec_email", nativeQuery = true)
     List<Course> findAllByLec_email(@Param("lec_email") String lec_email);
-    
-    @Query(value = "SELECT * FROM Course WHERE std_email = :std_email", nativeQuery = true)
-    List<Course> findAllByStd_emailCourses(@Param("std_email") String std_email);    
+
 
 }

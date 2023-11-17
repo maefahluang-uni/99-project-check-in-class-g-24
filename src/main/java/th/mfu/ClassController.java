@@ -1,5 +1,6 @@
 package th.mfu;
 
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,24 +79,31 @@ public class ClassController {
 
         Lecturer lec = lecturerrepo.findById(lec_email).get();
         model.addAttribute("lec", lec);
+        // model.addAttribute("lec_email", lec.getLec_email());
         model.addAttribute("courses",courserepo.findAllByLecId(lec.getLec_id()));
 
         return "Lviewcourse";
     }
 
-    @GetMapping("Sviewcourse/{std_email}")
-    public String sview(@PathVariable String std_email,Model model){
+    // @GetMapping("Sviewcourse/{std_email}")
+    // public String sview(@PathVariable String std_email,Model model){
 
-        Student student = studentRepo.findAllByStd_email(std_email).get(0);
-        List<Student> s = studentRepo.findAllByStd_email(std_email);
-        List<Course> c = courserepo.findAllByStd_emailCourses(std_email);
+    //     Student student = studentRepo.findAllByStd_email(std_email).get(0);
+    //     System.out.println(student.getStd_id());
+    //     List<Student> s = studentRepo.findAllByStd_email(std_email);
+    //     System.out.println(s.get(0));
 
-        model.addAttribute("std", student);
-        model.addAttribute("students", s);
-        model.addAttribute("courses",c);
+    //     // List<Course> c = courserepo.findAllByStd_emailCourses(std_email);
+    //     // System.out.println(c.get(0));
+    //     List <Course> c = studentRepo.findAllByStd_list(s);
+    //     List <Course> courses = courserepo.findAllByCourse_id(c);
 
-        return "Sviewcourse";
-    }
+    //     model.addAttribute("std", student);
+    //     model.addAttribute("students", s);
+    //     model.addAttribute("courses",courses);
+
+    //     return "Sviewcourse";
+    // }
 
     @GetMapping("Ahomepage/{admin_email}")
     public String aview(Model model){
@@ -104,7 +112,13 @@ public class ClassController {
     }
 
 
-
+    @GetMapping("Lviewcourse/Lprofile/{lec_email}")
+    public String Lpfview(@PathVariable String lec_email,Model model){
+    
+        Lecturer lecturer = lecturerrepo.findById(lec_email).get();
+        model.addAttribute("lecturer",lecturer);
+        return "Lprofile";
+    }
 
 
 }

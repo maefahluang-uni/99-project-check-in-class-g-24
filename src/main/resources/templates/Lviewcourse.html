@@ -110,22 +110,19 @@
 
     </head>
     <body>
-        <div class="nav">
+        <div class="nav" th:object="${lec}">
             <h1>Check-in Class</h1>
             <div class="profile">
-                <div class="icon"><a href="profile.html"><i class="fas fa-user-circle"></i></a></div>
-                <div class="info" th:object="${lec}">
+                <div class="icon"><a th:href="'Lprofile/' + ${lec.lec_email}"><i class="fas fa-user-circle"></i></a></div>
+                <div class="info">
                     <p><a href="profile.html"><span th:text="${lec.lec_firstname}"></span><span th:text="${lec.lec_lastname}"></span> </a></p>
                     <p><a href="profile.html"><span th:text="${lec.lec_email}"></span> </a></p>
                 </div>
             </div>
             <div class="btn">
-                <p><a class="course" href="Lviewcourse.html">My Course</a></p>
+                <p><a class="course" th:href="'Lviewcourse/' + ${lec.lec_email}">My Course</a></p>
                 <span></span>
             </div>
-            
-        </div>
-
             
         </div>
         <br>
