@@ -195,10 +195,10 @@
         <div class="nav">
             <h2>Check-in Class</h2>
             <div class="profile">
-                <div class="icon"><a href="profile.html"><i class="fas fa-user-circle"></i></a></div>
-                <div class="info">
+                <div class="icon"><a th:href="admin_home_page"><i class="fas fa-user-circle"></i></a></div>
+                <div class="info" th:object="${admin}">
                     <p><a href="profile.html">Administrator</a></p>
-                    <p><a href="profile.html">admin@lamduan.mfu.ac.th</a></p>
+                    <p><a href="profile.html" th:text="${admin.admin_email}"></a></p>
                 </div>
             </div>
         </div>
@@ -206,19 +206,19 @@
         <!-- start left menu -->
         <div class="left">
             <div class="dashboard">
-                <a href="admin_home_page.html"><i class="fas fa-tachometer-alt"></i>Dashboard</a>  
+                <a th:href="admin_home_page"><i class="fas fa-tachometer-alt"></i>Dashboard</a>  
             </div>
 
             <div class="class">
-                <a href="admin_create_class.html" class="ic"><i class="fas fa-chalkboard"></i>Create Class</a>
+                <a th:href="admin_create_class" class="ic"><i class="fas fa-chalkboard"></i>Create Class</a>
                 
             </div>
             <div class="teacher">
-                <a href="admin_create_lec.html" class="ic"><i class="fas fa-chalkboard-teacher"></i>Create Lecturer</a>
+                <a th:href="admin_create_lec" class="ic"><i class="fas fa-chalkboard-teacher"></i>Create Lecturer</a>
                 
             </div>
             <div class="student">
-                <a href="admin_create_std.html" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
+                <a th:href="admin_create_std" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
                
             </div>
             <button class="logout"> 

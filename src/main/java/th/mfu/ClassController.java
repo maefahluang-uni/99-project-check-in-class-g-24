@@ -108,7 +108,7 @@ public class ClassController {
     @GetMapping("Ahomepage/{admin_email}")
     public String aview(Model model){
 
-        return "Ahomepage";
+        return "admin_home_page";
     }
 
 
@@ -128,6 +128,15 @@ public class ClassController {
         return "Lannounceview";
     }
 
+    @GetMapping("Ahomepage/admin_create_class/{admin_email}")
+    public String aview(Model model,@PathVariable String admin_email){
+
+        AdminC admin = adminRepo.findById(admin_email).get();
+
+        model.addAttribute("admin",admin);
+
+        return "admin_home_page";
+    }
 
 }
 

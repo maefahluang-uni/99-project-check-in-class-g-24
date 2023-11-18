@@ -90,14 +90,20 @@
                 align-items: center;
                 padding-top: 10px;
             }
+        
             .mid-section span{
                 font-weight: 600;
             }
             .bar{
-                border: 4px solid #A41313;
+                width:540px;
+                
+                border: 4px solid #000;
+                transform:translateX(180px);
             }
 
-            .add-button{
+            .add{
+                text-decoration:none;
+
                 position: absolute;
                 left: 47%;
                 padding: 10px ;
@@ -106,10 +112,11 @@
                 background-color: #e0e0e0;
             }
 
-            .add-button span{
+            .add span{
                 color:#8c8c8c;
                 font-size: x-large;
                 padding: 5px;
+                transform:translateY(-3px);
             }
 
            .announce{
@@ -129,6 +136,18 @@
                 flex: 1;
                 margin-top: 20px;
                 margin-left: 20px;
+                transform:translateY(30px);
+            }
+
+            .right_section a{
+                text-decoration:none;
+                color: #000;
+                font-size:20px;
+            }
+
+            .right_section a i{
+                color:brown;
+                padding-right:10px;
             }
             
             .update-attendance, .list-std{
@@ -168,25 +187,29 @@
             <div class="left_section"> </div>
            
             <div class="mid-section">
+
                 <h4>Software Requirements Analysis and Specification</h4>
                 <div class="bar"></div>
                 <span>Sec-01</span>  
                 
                 <div class="announce">
-                    <button class="add-button"><span>&plus;</span> </button>
-                   <P>Announce something to your class.</P> 
+                    <a href="Lec_post_materials_new.html" class="add"><span>&plus;</span> </a>
+                   <P>Announce something to your class.</p>
                 </div>
             </div>     
         
             <div class="right_section">
                
-                    <button class="list-std"> 
+                    <!-- <button class="list-std"> 
                         <img class="list-icon"src="users-three.svg"> Student List
                     </button>
                     <br>
                     <button class="update-attendance"> 
                         <img class="update-icon" src="update.svg"> View Attendance
-                    </button>
+                    </button> -->
+
+                <a href="studentlist.html" style="display:block;"><i class="fas fa-users"></i>Student List</a>
+                <a href="#"><i class="far fa-list-alt"></i>View Attendance</a>
                 
             </div>
         
