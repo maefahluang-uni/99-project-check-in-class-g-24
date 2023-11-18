@@ -11,6 +11,9 @@ import th.mfu.domain.Lecturer;
 
 @Repository
 public interface LecturerRepository extends JpaRepository<Lecturer, String> {
+    
+    @Query(value = "SELECT * FROM lecturer WHERE Lec_id = :lec_id", nativeQuery = true)
+    Lecturer findByLec_id(String lec_id);
 
     // @Query(value = "SELECT * FROM lecturer WHERE Lec_email = :lec_email", nativeQuery = true)
     // Lecturer findByLec_email(String lec_email);

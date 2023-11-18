@@ -120,6 +120,14 @@ public class ClassController {
         return "Lprofile";
     }
 
+    @GetMapping("Lviewcourse/Lannounce/{Lec_id}")
+    public String Lannounce(@PathVariable String Lec_id,Model model){
+    
+        Lecturer lecturer = lecturerrepo.findByLec_id(Lec_id);
+        model.addAttribute("lec",lecturer);
+        return "Lannounceview";
+    }
+
 
 }
 
