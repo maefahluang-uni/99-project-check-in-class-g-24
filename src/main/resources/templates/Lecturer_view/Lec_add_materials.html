@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lecture Announce</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        <style type="text/css">
+
+            *{
+                box-sizing:border-box;
+            }
+        
+            body{
+                margin:0;
+                padding:0;
+                background-color: rgb(232, 232, 232);
+                overflow: hidden;
+                
+            }
+
+            .nav{
+                width: 100%;
+                height: 150px;
+                background-color: brown;
+                border-radius: 0px 0px 20px 20px;
+                position:fixed;
+                z-index: 1000;
+                top:0;
+            }
+
+            .nav h2{
+                color:#fff;
+                font-weight:bold;
+                margin:10px;
+                padding:10px;
+            }
+
+            .profile{
+                position: absolute;
+                top: 3%;
+                right: 5%;
+                line-height: 5px;
+            }
+            .icon{
+                font-size: 40px;
+                transform: translateX(-50px) translateY(30px);
+            }
+            .profile a{
+                text-decoration: none;
+                color: #fff;
+            }
+
+            .btn a{
+                font-size:20px;
+                color:#fff;
+                text-decoration:none; 
+            }
+
+            .back{
+                margin:10px;
+                padding:10px;
+
+                position:absolute;
+                left:0;
+                bottom:0;
+            }
+
+            .home{
+                margin:10px;
+                padding:10px;
+                position:absolute;
+                right:0;
+                bottom:0;
+            }
+
+            .view{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                width: 100%;
+                color: black;
+            }
+
+            .title{
+                line-height: 10px;
+                padding-top: 380px;
+                position:fixed;
+                z-index: 1000;
+            }
+
+            .title h4,.title span{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-top: 10px;
+            }
+            .title span{
+                font-weight: 600;
+            }
+            .bar{
+                border: 4px solid #000;
+            }
+
+            .container{
+                width:100%;
+                position:absolute;
+                top:250px;
+            }
+
+            form{
+                border-radius: 10px;
+                width: 80%;
+                height: 500px;
+                position: absolute;
+                left: 10%;
+                height: 100vh;
+                margin: 10px;
+                padding: 50px;
+                background-color: rgba(255, 255, 255, 0.662);
+            }
+
+            .check-box-btn{
+                font-size:15px;
+                color: #000;
+                text-decoration:none;
+                position: absolute;
+                left:52%;
+                top:8.5%;
+                border: none;
+                background-color: #cdcdcd;
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                padding: 5px;
+                border-radius: 5px;
+                transform: translateX(340px) translateY(25px);
+
+            }
+
+            
+        </style>
+    </head>
+    <body>
+        
+        <div class="nav">
+            <h2>Check-in Class</h2>
+            <div class="profile">
+                <div class="icon"><a href="profile.html"><i class="fas fa-user-circle"></i></a></div>
+                <div class="info">
+                    <p><a href="profile.html">Geogre</a></p>
+                    <p><a href="profile.html">65xxxxxxx@lamduan.mfu.ac.th</a></p>
+                </div>
+            </div>
+            <div class="btn">
+                <a href="#" class="back">Back</a>
+                <a href="#" class="home">Home</a>
+            </div>
+        </div>
+
+        <div class="view">
+            <!-- <div class="left_section"> </div> -->
+            <div class="title">
+                <h4>Software Requirements Analysis and Specification</h4>
+                <div class="bar"></div>
+                <span>Sec-01</span>
+            </div>
+
+            <div class="container">
+                
+                <!-- <div> <img class="post-logo" src="post-logo.svg"> Post</div> -->
+
+                <div class="form-box">
+                    <form action="" method="">
+                    <div class="row">
+
+                        <div class="col-md-12 form-group mb-3">
+                            <label for="announce" style="font-size:25px;"><i class="far fa-comment-alt" style="font-size:20px;color:#A41313;"></i> Post</label>
+                            <textarea name="announce" id="announce" class="form-control rounded-0"></textarea>
+                            <a href="#" class="check-box-btn">Check Box &rarr;</a>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn me-3" style="background-color:#cdcdcd;"> Cancel</button>
+                                <button type="button" class="btn px-4" style="background-color:#A41313;color:#fff;"> Post</button>
+                            </div>   
+                        </div>     
+                    </div>
+                </form>  
+                </div>
+                      
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#announce').summernote({
+                    placeholder: 'Announce something to your class...',
+                    tabsize: 2,
+                    height: 100,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'file', 'video']]
+                    ]
+			    });
+            });
+        </script>
+    </body>
+</html>
