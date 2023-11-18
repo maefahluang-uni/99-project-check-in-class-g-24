@@ -197,8 +197,8 @@
             <div class="profile">
                 <div class="icon"><a th:href="admin_home_page"><i class="fas fa-user-circle"></i></a></div>
                 <div class="info" th:object="${admin}">
-                    <p><a href="profile.html">Administrator</a></p>
-                    <p><a href="profile.html" th:text="${admin.admin_email}"></a></p>
+                    <p><a th:href="admin_home_page">Administrator</a></p>
+                    <p><a th:href="admin_home_page" th:text="${admin.admin_email}"></a></p>
                 </div>
             </div>
         </div>
@@ -221,7 +221,7 @@
                 <a th:href="admin_create_std" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
                
             </div>
-            <button class="logout"> 
+            <button class="logout" onclick="location.href='/login'"> 
                 <i class="fas fa-sign-out-alt"></i>
                 <span>Log Out</span>
 

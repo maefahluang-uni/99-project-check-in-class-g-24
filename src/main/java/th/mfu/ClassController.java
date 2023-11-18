@@ -2,6 +2,7 @@ package th.mfu;
 
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,7 +69,7 @@ public class ClassController {
         } else if (stdOptional.isPresent() && !stdOptional.get().isEmpty()) {
             return "redirect:/Sviewcourse/" + email;
         } else if (adOptional.isPresent()) {
-            return "redirect:/Ahomepage/" + email;
+            return "redirect:/admin_home_page/" + email;
         }
 
         return "redirect:/login";
@@ -105,9 +106,10 @@ public class ClassController {
     //     return "Sviewcourse";
     // }
 
-    @GetMapping("Ahomepage/{admin_email}")
-    public String aview(Model model){
-
+    @GetMapping("admin_home_page/{admin_email}")
+    public String aview(Model model,@PathVariable String admin_email){
+        AdminC admin = adminRepo.findById(admin_email).get();
+        model.addAttribute("admin", admin);
         return "admin_home_page";
     }
 
@@ -128,8 +130,8 @@ public class ClassController {
         return "Lannounceview";
     }
 
-    @GetMapping("Ahomepage/admin_create_class/{admin_email}")
-    public String aview(Model model,@PathVariable String admin_email){
+    @GetMapping("admin_home_page/admin_create_class/{admin_email}")
+    public String admin_create_class(Model model,@PathVariable String admin_email){
 
         AdminC admin = adminRepo.findById(admin_email).get();
 

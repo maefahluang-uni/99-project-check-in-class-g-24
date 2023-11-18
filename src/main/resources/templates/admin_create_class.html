@@ -235,10 +235,10 @@
          <div class="nav">
             <h2>Check-in Class</h2>
             <div class="profile">
-                <div class="icon"><a href="profile.html"><i class="fas fa-user-circle"></i></a></div>
+                <div class="icon"><a th:href="admin_home_page"><i class="fas fa-user-circle"></i></a></div>
                 <div class="info" th:object="${admin}">
-                    <p><a href="profile.html">Administrator</a></p>
-                    <p><a href="profile.html" th:text="${admin.admin_email}"></a></p>
+                    <p><a th:href="admin_home_page">Administrator</a></p>
+                    <p><a th:href="admin_home_page" th:text="${admin.admin_email}"></a></p>
                 </div>
             </div>
         </div>
@@ -261,7 +261,7 @@
             <a th:href="admin_create_std" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
            
         </div>
-        <button class="logout"> 
+        <button class="logout" onclick="location.href='/login'"> 
             <i class="fas fa-sign-out-alt"></i>
             <span>Log Out</span>
 
@@ -272,7 +272,7 @@
         <div class="main">
             <h3 class="title">Create Class</h3>
             <div class="maintop">
-                <a class="hm" href="admin_home_page.html">Home <a class="dhb">\ Dashboard</a></a>
+                <a class="hm" th:href="admin_home_page">Home <a class="dhb">\ Dashboard</a></a>
             </div>
             <div class="form">
                 <div class="top">
