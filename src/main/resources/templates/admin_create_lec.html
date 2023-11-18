@@ -273,31 +273,33 @@
             </div>
             <div class="form">
                 <div class="top">
-                    <div class="elements">
-                        <div class="fn">
-                            <label for="lec_firstname">First Name<span style="color: red;">*</span></label><br>
-                            <input type="text" id="lec_firstname" name="lec_firstname" required /><br>
-                        </div>
-                        <div class="ln">
-                            <label for="lec_lastname">Last Name<span style="color: red;">*</span></label><br>
-                            <input type="text" id="lec_lastname" name="lec_lastname" required/><br>
-                        </div>
-                        <div class="em">
-                            <label for="lec_email">Email Address<span style="color: red;">*</span></label><br>
-                            <input type="email" id="lec_email" name="lec_email" required/><br>
-                        </div>
-                        <div class="course">
-                            <label for="course_id">Enter Course Code<span style="color: red;">*</span></label><br>
-                            <input type="text" id="course_id" name="course_id" required placeholder="--Select Course Code--"/><br>
-                        </div>
-                        <div class="sec">
-                            <label for="sec_id">Select Section<span style="color: red;">*</span></label><br>
-                            <input type="text" id="sec_id" name="sec_id" required placeholder="--Select Section--"/><br>
+                    <form th:action="@{/admin_create_lecturer}" method="post" th:object="${lecturer}">
+                        <div class="elements">
+                            <div class="fn">
+                                <label for="lec_firstname">First Name<span style="color: red;">*</span></label><br>
+                                <input type="text" id="lec_firstname" th:field="*{lec_firstname}" required /><br>
+                            </div>
+                            <div class="ln">
+                                <label for="lec_lastname">Last Name<span style="color: red;">*</span></label><br>
+                                <input type="text" id="lec_lastname" th:field="*{lec_lastname}" required/><br>
+                            </div>
+                            <div class="em">
+                                <label for="lec_email">Email Address<span style="color: red;">*</span></label><br>
+                                <input type="email" id="lec_email" th:field="*{lec_email}" required/><br>
+                            </div>
+                            <!-- <div class="course">
+                                <label for="course_id">Enter Course Code<span style="color: red;">*</span></label><br>
+                                <input type="text" id="course_id" th:field="*{course_id}" required placeholder="--Select Course Code--"/><br>
+                            </div> -->
+                            <!-- <div class="sec">
+                                <label for="sec_id">Select Section<span style="color: red;">*</span></label><br>
+                                <input type="text" id="sec_id" th:field="sec_id" required placeholder="--Select Section--"/><br>
+                                
+                            </div> -->
                             
+                            <button type="submit" class="save">Save</button>
                         </div>
-                        
-                        <button type="submit" class="save">Save</button>
-                    </div>
+                    </form>
                 </div>
                 <div class="display">
                     <p style="color: blue;">All Lecturers</p>

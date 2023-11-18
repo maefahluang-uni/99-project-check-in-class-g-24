@@ -264,7 +264,6 @@
         <button class="logout" onclick="location.href='/login'"> 
             <i class="fas fa-sign-out-alt"></i>
             <span>Log Out</span>
-
         </button>
     </div>
     <!-- end left menu -->
@@ -277,20 +276,23 @@
             <div class="form">
                 <div class="top">
                     <div class="elements">
-                        <div class="cl">
-                            <label for="class_name">Create Class<span style="color: red;">*</span></label><br>
-                            <input type="text" id="class_name" name="class_name" required /><br>
-                        </div>
-                        <div class="code">
-                            <label for="course_code">Enter Course Code<span style="color: red;">*</span></label><br>
-                            <input type="text" id="course_code" name="course_code" required/><br>
-                        </div>
-                        <div class="sec">
-                            <label for="sec_id">Enter Section<span style="color: red;">*</span></label><br>
-                            <input type="text" id="sec_id" name="sec_id" required /><br>   
-                        </div>
-                        <button type="submit" class="save">Save</button>
+                        <form action="@{/admin_create_class}" method="post" th:object="${course}">
+                            <div class="cl">
+                                <label for="course_name">Create Class<span style="color: red;">*</span></label><br>
+                                <input type="text" id="course_name" th:field="*{course_name}" required /><br>
+                            </div>
+                            <div class="code">
+                                <label for="course_code">Enter Course Code<span style="color: red;">*</span></label><br>
+                                <input type="text" id="course_code" th:field="*{course_id}" required/><br>
+                            </div>
+                            <!-- <div class="sec">
+                                <label for="sec_id">Enter Section<span style="color: red;">*</span></label><br>
+                                <input type="text" id="sec_id" th:field="*{}" required /><br>   
+                            </div> -->
+                            <button type="submit" class="save">Save</button>
+                        </form>
                     </div>
+                        
                 </div>
                 <div class="display">
                     <p style="color: blue;">All Classes</p>

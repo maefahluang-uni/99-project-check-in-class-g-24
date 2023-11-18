@@ -205,20 +205,20 @@
         <!-- end nav bar -->
         <!-- start left menu -->
         <div class="left">
-            <div class="dashboard">
+            <div class="dashboard" th:object="${admin}">
                 <a th:href="admin_home_page"><i class="fas fa-tachometer-alt"></i>Dashboard</a>  
             </div>
 
             <div class="class">
-                <a th:href="admin_create_class" class="ic"><i class="fas fa-chalkboard"></i>Create Class</a>
+                <a th:href="'admin_create_class/' +${admin.admin_email}" class="ic"><i class="fas fa-chalkboard"></i>Create Class</a>
                 
             </div>
             <div class="teacher">
-                <a th:href="admin_create_lec" class="ic"><i class="fas fa-chalkboard-teacher"></i>Create Lecturer</a>
+                <a th:href="'admin_create_lec/' +${admin.admin_email}" class="ic"><i class="fas fa-chalkboard-teacher"></i>Create Lecturer</a>
                 
             </div>
             <div class="student">
-                <a th:href="admin_create_std" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
+                <a th:href="'admin_create_std/' +${admin.admin_email}" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
                
             </div>
             <button class="logout" onclick="location.href='/login'"> 

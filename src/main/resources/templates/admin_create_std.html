@@ -275,31 +275,37 @@
             </div>
             <div class="form">
                 <div class="top">
-                    <div class="elements">
-                        <div class="fn">
-                            <label for="std_firstname">First Name<span style="color: red;">*</span></label><br>
-                            <input type="text" id="std_firstname" name="std_firstname" required/><br>
-                        </div>
-                        <div class="ln">
-                            <label for="std_lastname">Last Name<span style="color: red;">*</span></label><br>
-                            <input type="text" id="std_lastname" name="std_lastname" required/><br>
-                        </div>
-                        <div class="em">
-                            <label for="std_email">Email<span style="color: red;">*</span></label><br>
-                            <input type="email" id="std_email" name="std_email" required/><br>
-                        </div>
-                        <div class="sec">
-                            <label for="sec_id">Select Section<span style="color: red;">*</span></label><br>
-                            <input type="text" id="sec_id" name="sec_id" placeholder="--Select Section--" required/><br>
+                    <form th:action="@{/admin_create_std}" method="post" th:object="${student}">
+                        <div class="elements">
+                            <div class="fn">
+                                <label for="std_firstname">First Name<span style="color: red;">*</span></label><br>
+                                <input type="text" id="std_firstname" th:field="*{std_firstname}" required/><br>
+                            </div>
+                            <div class="ln">
+                                <label for="std_lastname">Last Name<span style="color: red;">*</span></label><br>
+                                <input type="text" id="std_lastname" th:field="*{std_lastname}" required/><br>
+                            </div>
+                            <div class="em">
+                                <label for="std_email">Email<span style="color: red;">*</span></label><br>
+                                <input type="email" id="std_email" th:field="*{std_email}" required/><br>
+                            </div>
+                            <div class="fn">
+                                <label for="std_id">First Name<span style="color: red;">*</span></label><br>
+                                <input type="text" id="std_id" th:field="*{std_id}" required/><br>
+                            </div>
+                            <div class="sec">
+                                <label for="sec_id">Select Section<span style="color: red;">*</span></label><br>
+                                <input type="text" id="sec_id" th:field="*{sec_id}" placeholder="--Select Section--" required/><br>
+                                
+                            </div>
+                            <div class="course">
+                                <label for="course_id">Enter Course Code<span style="color: red;">*</span></label><br>
+                                <input type="text" id="course_id" th:field="*{c_id}" required/><br>
+                            </div>
                             
+                            <button type="submit" class="save">Save</button>
                         </div>
-                        <div class="course">
-                            <label for="course_id">Enter Course Code<span style="color: red;">*</span></label><br>
-                            <input type="text" id="course_id" name="course_id" required/><br>
-                        </div>
-                        
-                        <button type="submit" class="save">Save</button>
-                    </div>
+                    </form>
                 </div>
                 <div class="display">
                     <p style="color: blue;">All Students</p>
