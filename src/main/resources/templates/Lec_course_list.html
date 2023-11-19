@@ -1,4 +1,3 @@
-view_course.html
 <!DOCTYPE html>
 <html>
     <head>
@@ -111,52 +110,35 @@ view_course.html
 
     </head>
     <body>
-        <div class="nav">
+        <div class="nav" th:object="${lec}">
             <h1>Check-in Class</h1>
             <div class="profile">
-                <div class="icon"><a href="profile.html"><i class="fas fa-user-circle"></i></a></div>
+                <div class="icon"><a th:href="'Lprofile/' + ${lec.lec_email}"><i class="fas fa-user-circle"></i></a></div>
                 <div class="info">
-                    <p><a href="profile.html">Geogre</a></p>
-                    <p><a href="profile.html">65xxxxxxx@lamduan.mfu.ac.th</a></p>
+                    <p><a th:href="'Lprofile/' + ${lec.lec_email}"><span th:text="${lec.lec_firstname}"></span><span th:text="${lec.lec_lastname}"></span> </a></p>
+                    <p><a th:href="'Lprofile/' + ${lec.lec_email}"><span th:text="${lec.lec_email}"></span> </a></p>
                 </div>
             </div>
             <div class="btn">
-                <p><a class="course" href="view_course.html">My Course</a></p>
+                <p><a class="course" href="">My Course</a></p>
                 <span></span>
             </div>
             
         </div>
 
-            
         </div>
         <br>
         <div class="allcourses">
             <ul>  
-                <li class="title">
-                    <span>Course Code</span> 
-                    <span>Course Name</span>
-                    <span class="sec">Section</span>
-                </li>
-                <br>
-
-                <li class="title">
-                    <span>Course Code</span> 
-                    <span>Course Name</span>
-                    <span>Section</span>
-                </li>
-                <br>
-                <li class="title">
-                    <span>Course Code</span> 
-                    <span>Course Name</span>
-                    <span>Section</span>
-                </li>
-                 <!--                
-                <li class="title" th:each="course : ${courses}">
-                    <span th:text="${course.code}"></span> 
-                    <span th:text="${course.name}"></span>
-                    <span th:text="${course.section}"></span>
-                </li> --> 
                 
+                <li class="title" th:each="course : ${courses}">
+                    <a th:href="'Lec_announce_view/' + ${course.Lec_id}">
+                        <span th:text="${course.course_id}"></span> 
+                        <span th:text="${course.course_name}"></span>
+                        <span th:text="${course.credit}"></span>
+                    </a>
+                    
+                </li>
                 
     
             </ul>

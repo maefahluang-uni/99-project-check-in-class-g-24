@@ -29,8 +29,6 @@ import th.mfu.domain.Section;
 @Controller
 public class ClassController {
 
-    
-
     @Autowired
     private StudentRepository studentRepo;
 
@@ -59,13 +57,23 @@ public class ClassController {
     public String login(@ModelAttribute Login_acc user, Model model) {
 
         String email = user.getEmail();
+        String pw = user.getPassword();
 
         Optional<Lecturer> lecOptional = lecturerrepo.findById(email);
         Optional<List<Student>> stdOptional = Optional.ofNullable(studentRepo.findAllByStd_email(email));
         Optional<AdminC> adOptional = adminRepo.findById(email);
 
         if (lecOptional.isPresent()) {
-            return "redirect:/Lviewcourse/" + email;
+            Lecturer lec = lecturerrepo.findById(email).get();
+            System.out.println("===============================");
+            System.out.println(pw);
+            System.out.println("===============================");
+            if(lec.getLec_password() == pw){
+                return "redirect:/Lec_course_list/" + email;
+            }else{
+                 return "redirect:/login";
+            }
+
         } else if (stdOptional.isPresent() && !stdOptional.get().isEmpty()) {
             return "redirect:/Sviewcourse/" + email;
         } else if (adOptional.isPresent()) {
@@ -75,7 +83,7 @@ public class ClassController {
         return "redirect:/login";
     }
 
-    @GetMapping("Lviewcourse/{lec_email}")
+    @GetMapping("Lec_course_list/{lec_email}")
     public String lview(@PathVariable String lec_email,Model model){
 
         Lecturer lec = lecturerrepo.findById(lec_email).get();
@@ -83,30 +91,12 @@ public class ClassController {
         // model.addAttribute("lec_email", lec.getLec_email());
         model.addAttribute("courses",courserepo.findAllByLecId(lec.getLec_id()));
 
-        return "Lviewcourse";
+        return "Lec_course_list";
     }
 
-    // @GetMapping("Sviewcourse/{std_email}")
-    // public String sview(@PathVariable String std_email,Model model){
+    
 
-    //     Student student = studentRepo.findAllByStd_email(std_email).get(0);
-    //     System.out.println(student.getStd_id());
-    //     List<Student> s = studentRepo.findAllByStd_email(std_email);
-    //     System.out.println(s.get(0));
-
-    //     // List<Course> c = courserepo.findAllByStd_emailCourses(std_email);
-    //     // System.out.println(c.get(0));
-    //     List <Course> c = studentRepo.findAllByStd_list(s);
-    //     List <Course> courses = courserepo.findAllByCourse_id(c);
-
-    //     model.addAttribute("std", student);
-    //     model.addAttribute("students", s);
-    //     model.addAttribute("courses",courses);
-
-    //     return "Sviewcourse";
-    // }
-
-    @GetMapping("Lviewcourse/Lprofile/{lec_email}")
+    @GetMapping("Lec_course-list/Lprofile/{lec_email}")
     public String Lpfview(@PathVariable String lec_email,Model model){
     
         Lecturer lecturer = lecturerrepo.findById(lec_email).get();
@@ -114,14 +104,20 @@ public class ClassController {
         return "Lprofile";
     }
 
-    @GetMapping("Lviewcourse/Lannounce/{Lec_id}")
+    @GetMapping("Lec_course_list/Lec_announce_view/{Lec_id}")
     public String Lannounce(@PathVariable String Lec_id,Model model){
     
         Lecturer lecturer = lecturerrepo.findByLec_id(Lec_id);
         model.addAttribute("lec",lecturer);
-        return "Lannounceview";
+        return "Lec_announce_view";
     }
 
+    @GetMapping("/Lec_course_list/Lec_announce_view/Lec_add_materials")
+    public String Lec_add_materials(){
+
+
+        return "Lec_add_materials";
+    }
 
     @GetMapping("admin_home_page/{admin_email}")
     public String admin_home_pageG(Model model,@PathVariable String admin_email){
@@ -164,10 +160,18 @@ public class ClassController {
         return "/admin_create_class";
     }
 
+
     @PostMapping("/admin_create_class")
-    public String admin_create_classP(Model model,@ModelAttribute Course course,@ModelAttribute AdminC admin){
+    public String admin_create_classP(Model model, @ModelAttribute Course course, @ModelAttribute AdminC admin) {
 
         courserepo.save(course);
+
+        List<Course> courses = courserepo.findAll();
+        System.out.println("This is text for " + courses);
+
+        model.addAttribute("courses", courses);
+        
+        // List <Section> sections = sectionrepo.findAllById();
 
         return "admin_create_class";
     }
