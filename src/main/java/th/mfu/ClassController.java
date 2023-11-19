@@ -64,31 +64,52 @@ public class ClassController {
         Optional<AdminC> adOptional = adminRepo.findById(email);
 
         if (lecOptional.isPresent()) {
+
             Lecturer lec = lecturerrepo.findById(email).get();
-            System.out.println("===============================");
-            System.out.println(pw);
-            System.out.println("===============================");
-            if(lec.getLec_password() == pw){
+
+            if(lec.getLec_password().equals(pw)){
                 return "redirect:/Lec_course_list/" + email;
             }else{
                  return "redirect:/login";
             }
 
-        } else if (stdOptional.isPresent() && !stdOptional.get().isEmpty()) {
+        } else if (stdOptional.isPresent() && (stdOptional.equals(null))) {
+            //     Student std = studentRepo.findByStd_email(email);
+            // if(std.getStd_password().equals(pw)){
+            //     return "redirect:/Sviewcourse/" + email;
+            // }else{
+            //      return "redirect:/login";
+            // }
+                
             return "redirect:/Sviewcourse/" + email;
-        } else if (adOptional.isPresent()) {
-            return "redirect:/admin_home_page/" + email;
-        }
 
-        return "redirect:/login";
+        } else if (adOptional.isPresent()) {
+
+             AdminC ad = adminRepo.findById(email).get();
+
+            if(ad.getAdmin_password().equals(pw)){
+
+                return "redirect:/admin_home_page";
+
+            }else{
+                 return "redirect:/login";
+            }
+
+        }else{
+            model.addAttribute("user", new Login_acc());
+            model.addAttribute("error", "Invalid email address");
+            return "login";
+        }
     }
+
 
     @GetMapping("Lec_course_list/{lec_email}")
     public String lview(@PathVariable String lec_email,Model model){
 
         Lecturer lec = lecturerrepo.findById(lec_email).get();
+
         model.addAttribute("lec", lec);
-        // model.addAttribute("lec_email", lec.getLec_email());
+        
         model.addAttribute("courses",courserepo.findAllByLecId(lec.getLec_id()));
 
         return "Lec_course_list";
@@ -119,50 +140,86 @@ public class ClassController {
         return "Lec_add_materials";
     }
 
-    @GetMapping("admin_home_page/{admin_email}")
-    public String admin_home_pageG(Model model,@PathVariable String admin_email){
-        AdminC admin = adminRepo.findById(admin_email).get();
-        model.addAttribute("admin", admin);
+        @GetMapping("admin_home_page")
+    public String admin_home_pageG(Model model){
+
         return "admin_home_page";
     }
 
-    @GetMapping("admin_home_page/admin_create_lec/{admin_email}")
-    public String admin_create_lec(Model model,@PathVariable String admin_email){
+    // @GetMapping("admin_home_page/{admin_email}")
+    // public String admin_home_pageG(Model model,@RequestParam String admin_email){
+    //     AdminC admin = adminRepo.findById(admin_email).get();
+    //     model.addAttribute("admin", admin);
+    //     return "admin_home_page";
+    // }
 
-        AdminC admin = adminRepo.findById(admin_email).get();
+    // @GetMapping("admin_home_page/admin_create_lec/{admin_email}")
+    // public String admin_create_lec(Model model,@PathVariable String admin_email){
+
+    //     AdminC admin = adminRepo.findById(admin_email).get();
+    //     Lecturer lecturer = new Lecturer();
+
+    //     model.addAttribute("lecturer", lecturer);
+    //     model.addAttribute("admin",admin);
+
+    //     return "/admin_create_lec";
+    // }
+
+    @GetMapping("admin_create_lec")
+    public String admin_create_lec(Model model){
+
         Lecturer lecturer = new Lecturer();
 
         model.addAttribute("lecturer", lecturer);
-        model.addAttribute("admin",admin);
 
         return "/admin_create_lec";
     }
 
-    @GetMapping("admin_home_page/admin_create_std/{admin_email}")
-    public String admin_create_std(Model model,@PathVariable String admin_email){
+    // @GetMapping("admin_home_page/admin_create_std")
+    // public String admin_create_std(Model model,@PathVariable String admin_email){
 
-        AdminC admin = adminRepo.findById(admin_email).get();
+    //     AdminC admin = adminRepo.findById(admin_email).get();
+    //     Student student = new Student();
+    //     model.addAttribute("student" , student);
+    //     model.addAttribute("admin",admin);
+
+    //     return "/admin_create_std";
+    // }
+
+    @GetMapping("admin_create_std")
+    public String admin_create_std(Model model){
+
         Student student = new Student();
         model.addAttribute("student" , student);
-        model.addAttribute("admin",admin);
 
         return "/admin_create_std";
     }
 
-    @GetMapping("admin_home_page/admin_create_class/{admin_email}")
-    public String admin_create_class(Model model,@PathVariable String admin_email){
 
-        AdminC admin = adminRepo.findById(admin_email).get();
+    @GetMapping("admin_create_class")
+    public String admin_create_class(Model model){
+
         Course course = new Course();
         model.addAttribute("course",course);
-        model.addAttribute("admin",admin);
 
         return "/admin_create_class";
     }
 
 
+    // @GetMapping("admin_home_page/admin_create_class/{admin_email}")
+    // public String admin_create_class(Model model,@PathVariable String admin_email){
+
+    //     AdminC admin = adminRepo.findById(admin_email).get();
+    //     Course course = new Course();
+    //     model.addAttribute("course",course);
+    //     model.addAttribute("admin",admin);
+
+    //     return "/admin_create_class";
+    // }
+
+
     @PostMapping("/admin_create_class")
-    public String admin_create_classP(Model model, @ModelAttribute Course course, @ModelAttribute AdminC admin) {
+    public String admin_create_classP(Model model, @ModelAttribute Course course) {
 
         courserepo.save(course);
 
@@ -171,10 +228,11 @@ public class ClassController {
 
         model.addAttribute("courses", courses);
         
-        // List <Section> sections = sectionrepo.findAllById();
 
         return "admin_create_class";
     }
+
+
 
     @PostMapping("/admin_create_lec")
     public String admin_create_lecP(Model model,@ModelAttribute Lecturer lecturer){
@@ -183,6 +241,8 @@ public class ClassController {
         
         return "admin_create_lec";
     }
+
+
 
     @PostMapping("/admin_create_std")
     public String admin_create_stdP(Model model,@ModelAttribute Student student){
@@ -193,4 +253,3 @@ public class ClassController {
 
 
 }
-

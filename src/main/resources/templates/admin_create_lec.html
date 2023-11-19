@@ -232,10 +232,10 @@
          <div class="nav">
             <h2>Check-in Class</h2>
             <div class="profile">
-                <div class="icon"><a href="profile.html"><i class="fas fa-user-circle"></i></a></div>
+                <div class="icon"><a href="javascript:void(0)" onclick="redirectToNewPage()"><i class="fas fa-user-circle"></i></a></div>
                 <div class="info">
-                    <p><a href="profile.html">Administrator</a></p>
-                    <p><a href="profile.html"></a></p>
+                    <p><a href="javascript:void(0)" onclick="location.href='/admin_home_page'">Administrator</a></p>
+                    <p><a href="javascript:void(0)" onclick="location.href='/admin_home_page'">admin@lamduan.mfu.ac.th</a></p>
                 </div>
             </div>
         </div>
@@ -243,19 +243,19 @@
        <!-- start left menu -->
        <div class="left">
         <div class="dashboard">
-            <a href="admin_home_page.html"><i class="fas fa-tachometer-alt"></i>Dashboard</a>  
+            <a th:href="admin_home_page"><i class="fas fa-tachometer-alt"></i>Dashboard</a>  
         </div>
 
         <div class="class">
-            <a href="admin_create_class.html" class="ic"><i class="fas fa-chalkboard"></i>Create Class</a>
+            <a th:href="admin_create_class" class="ic"><i class="fas fa-chalkboard"></i>Create Class</a>
             
         </div>
         <div class="teacher">
-            <a href="admin_create_lec.html" class="ic"><i class="fas fa-chalkboard-teacher"></i>Create Lecturer</a>
+            <a th:href="admin_create_lec" class="ic"><i class="fas fa-chalkboard-teacher"></i>Create Lecturer</a>
             
         </div>
         <div class="student">
-            <a href="admin_create_std.html" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
+            <a th:href="admin_create_std" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
            
         </div>
         <button class="logout" onclick="location.href='/login'"> 
@@ -269,7 +269,7 @@
         <div class="main">
             <h3 class="title">Create Lecturer</h3>
             <div class="maintop">
-                <a class="hm" href="admin_home_page.html">Home <a class="dhb">\ Dashboard</a></a>
+                <a class="hm" th:href="admin_home_page">Home <a class="dhb">\ Dashboard</a></a>
             </div>
             <div class="form">
                 <div class="top">
@@ -408,6 +408,12 @@
 
             // });
 
+        </script>
+
+        <script>
+            function redirectToNewPage(){
+                window.location.href = 'admin_home_page';
+            }
         </script>
 
         <script type="text/javascript">

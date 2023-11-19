@@ -139,6 +139,7 @@
             <form th:action="@{/login}" method="post" th:object="${user}">
               <div class="mail_div">
                   <label for="std_email">Lamduan Email:</label><br />
+                  <span th:text="${error}"></span>
                 <input type="email" id="std_email" th:field="*{email}" required/>
                   <br> <br> <br>
               </div> 
