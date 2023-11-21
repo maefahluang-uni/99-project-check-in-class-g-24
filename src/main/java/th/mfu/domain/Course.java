@@ -3,6 +3,8 @@ package th.mfu.domain;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
@@ -12,14 +14,26 @@ import javax.persistence.ManyToMany;
 public class Course {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    
     private int course_id;
-    private String Lec_id;
-
     private String course_name;
+    private String Lec_id;
     private int credit;
+    private int course_sec;
+    
 
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Lecturer> Lecturer;
+
+    public int getCourse_sec() {
+        return course_sec;
+    }
+
+    public void setCourse_sec(int course_sec) {
+        this.course_sec = course_sec; 
+    }
 
     
     public String getLec_id() {
@@ -66,6 +80,14 @@ public class Course {
 
     public void setCredit(int credit) {
         this.credit = credit;
+    }
+
+     public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     

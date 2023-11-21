@@ -243,19 +243,19 @@
        <!-- start left menu -->
        <div class="left">
         <div class="dashboard">
-            <a th:href="admin_home_page"><i class="fas fa-tachometer-alt"></i>Dashboard</a>  
+            <a th:href="@{/admin_home_page}"><i class="fas fa-tachometer-alt"></i>Dashboard</a>  
         </div>
 
         <div class="class">
-            <a th:href="admin_create_class" class="ic"><i class="fas fa-chalkboard"></i>Create Class</a>
+            <a th:href="@{/admin_create_class}" class="ic"><i class="fas fa-chalkboard"></i>Create Class</a>
             
         </div>
         <div class="teacher">
-            <a th:href="admin_create_lec" class="ic"><i class="fas fa-chalkboard-teacher"></i>Create Lecturer</a>
+            <a th:href="@{/admin_create_lec}" class="ic"><i class="fas fa-chalkboard-teacher"></i>Create Lecturer</a>
             
         </div>
         <div class="student">
-            <a th:href="admin_create_std" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
+            <a th:href="@{/admin_create_std}" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
            
         </div>
         <button class="logout" onclick="location.href='/login'"> 
@@ -273,7 +273,7 @@
             </div>
             <div class="form">
                 <div class="top">
-                    <form th:action="@{/admin_create_lecturer}" method="post" th:object="${lecturer}">
+                    <form th:action="@{/admin_create_lec}" method="post" th:object="${lecturer}">
                         <div class="elements">
                             <div class="fn">
                                 <label for="lec_firstname">First Name<span style="color: red;">*</span></label><br>
@@ -287,14 +287,18 @@
                                 <label for="lec_email">Email Address<span style="color: red;">*</span></label><br>
                                 <input type="email" id="lec_email" th:field="*{lec_email}" required/><br>
                             </div>
-                            <!-- <div class="course">
+                            <div class="id">
+                                <label for="Lec_id">Lecturer ID<span style="color: red;">*</span></label><br>
+                                <input type="text" id="Lec_id" th:field="*{Lec_id}" required/><br>
+                            </div>
+                            <!-- <div class="lec_cid">
                                 <label for="course_id">Enter Course Code<span style="color: red;">*</span></label><br>
-                                <input type="text" id="course_id" th:field="*{course_id}" required placeholder="--Select Course Code--"/><br>
+                                <input type="text" id="lec_cid" th:field="*{lec_cid}" required placeholder="--Select Course Code--"/><br>
                             </div> -->
-                            <!-- <div class="sec">
+
+                            <!-- <div class="lec_sec">
                                 <label for="sec_id">Select Section<span style="color: red;">*</span></label><br>
-                                <input type="text" id="sec_id" th:field="sec_id" required placeholder="--Select Section--"/><br>
-                                
+                                <input type="text" id="lec_sec" th:field="lec_sec" required placeholder="--Select Section--"/><br>
                             </div> -->
                             
                             <button type="submit" class="save">Save</button>
@@ -309,18 +313,27 @@
                             <table id="mytable" class="table border">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No.</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
+                                        <th>Lecturer ID</th>
                                         <th>Email</th>
-                                        <th>Course Code</th>
-                                        <th>Section</th>
-                                        <th>Date</th>
+                                        <!-- <th>Course ID</th>
+                                        <th>Section</th> -->
                                         <th>Delete</th>
+
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
+                                <tbody th:each=" lec : ${lecturers}">
+
+                                        <td th:text="${lec.lec_firstname}">First Name</td>
+                                        <td th:text="${lec.lec_lastname}">Last Name</td>
+                                        <td th:text="${lec.Lec_id}">Lecturer ID</td>
+                                        <td th:text="${lec.lec_email}">Email</td>
+                                        <!-- <td th:text="${lec.lec_cid}">Course ID</td>
+                                        <td th:text="${lec.lec_sec}">Section ID</td> -->
+                                        <td><a th:href="@{/delete/{Lec_id}(Lec_id=${lec.Lec_id})}"  style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td>
+
+                                     <!--<tr>
                                         <td>1</td>
                                         <td>Irona</td>
                                         <td>Xai</td>
@@ -330,26 +343,8 @@
                                         <td>2023-01-22</td>
                                         <td><a href="#" style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Xi</td>
-                                        <td>Hi</td>
-                                        <td>Hello3@lamduan.mfu.ac.th</td>
-                                        <td>1305215</td>
-                                        <td>3</td>
-                                        <td>2023-10-13</td>
-                                        <td><a href="#" style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Sa</td>
-                                        <td>Si</td>
-                                        <td>DrSaSa7@lamduan.mfu.ac.th</td>
-                                        <td>1501208</td>
-                                        <td>3</td>
-                                        <td>2023-12-25</td>
-                                        <td><a href="#" style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td>
-                                    </tr>
+                                    -->
+                                
                                 </tbody>
                             </table>
                         </div>
@@ -401,13 +396,6 @@
 		        }
             }
 
-
-            // getarrowup1.addEventListener('click',function(){
-
-            //     getarrowup1.style.display="block";
-
-            // });
-
         </script>
 
         <script>
@@ -428,6 +416,5 @@
         </script>
 
     </body>
-
     
 </html>

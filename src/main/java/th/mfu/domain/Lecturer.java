@@ -20,6 +20,9 @@ public class Lecturer {
     private String lec_firstname;
     private String lec_lastname;
     private String lec_password;
+    //===========
+    // private int lec_cid;
+    // private int lec_sec;
 
     @ManyToMany(cascade = CascadeType.ALL)    
     private List<Section> section;
@@ -76,5 +79,24 @@ public class Lecturer {
     public void setSection(List<Section> section) {
         this.section = section;
     }
+    
+
+    // public int getLec_cid() {
+    //     return lec_cid;
+    // }
+
+    // public void setLec_cid(int lec_cid) {
+    //     this.lec_cid = lec_cid;
+    // }
+
+    // public int getLec_sec() {
+    //     return lec_sec;
+    // }
+
+    // public void setLec_sec(int lec_sec) {
+    //     this.lec_sec = lec_sec;
+    // }
+
+    
 
 }

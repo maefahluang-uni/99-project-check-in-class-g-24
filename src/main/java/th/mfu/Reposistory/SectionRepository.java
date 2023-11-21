@@ -17,4 +17,7 @@ public interface SectionRepository extends JpaRepository<Section,Integer> {
     @Query(value = "SELECT * FROM Section WHERE course_id = :course_id", nativeQuery = true)
     List<Section> findAllByCourse_id(@Param("course_id")int course_id);
 
+    @Query(value = "SELECT * FROM Section WHERE course_id = :course_id And sec_no = :sec_no", nativeQuery = true)
+    Section findByCourse_idandSection_id(@Param("course_id")int course_id , @Param("sec_no")int sec_no);
+
 }

@@ -15,6 +15,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int std_num;
+    
     private Long std_id;
     private String std_firstname;
     private String std_lastname;
