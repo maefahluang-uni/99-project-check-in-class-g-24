@@ -40,7 +40,9 @@
                 padding:10px;
             }
 
-
+            .info{
+                color: #ffffff;
+            }
             .profile{
                 position: absolute;
                 top: 3%;
@@ -56,10 +58,6 @@
                 color: #fff;
             }
 
-            .info p{
-                color: white;
-                font-weight: bold;
-            }
 
             .btn a{
                 font-size:20px;
@@ -86,7 +84,25 @@
                 right:0;
                 bottom:0;
             }
-
+            .bar{
+                border: 4px solid #A41313;
+                width: 1320px;
+                display: flex;
+                justify-content: center;
+                margin-left: 10px; 
+            }
+            .section-info {
+                padding-top: 10px;
+                width: fit-content;
+                margin-left: 608px;
+                font-weight: bold;
+            }
+            .thsec{
+                position: absolute;
+                transform: translateY(-20px);
+                left: 52%;
+                font-weight: bold;
+            }
 
             .view{
                 display: flex;
@@ -116,9 +132,7 @@
             .title span{
                 font-weight: 600;
             }
-            .bar{
-                border: 4px solid #000;
-            }
+            
 
 
             .container{
@@ -134,18 +148,21 @@
                 padding: 10px ;
                 border-radius: 10px;
                 border: none;
-                background-color: #a52424;
+                background-color: #A41313;;
                 /* box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); */
                 width: 80px;
                 height: 40px;
                 padding:5px;
+            }
+            .show-button{
+                border: 1px solid #fff;
             }
 
             .hide-button {
                 right:13%;
                 background-color: #c2c2c2;
                 text-align: center;
-                
+                border: 1px solid #A41313;
                 
             }
 
@@ -153,6 +170,7 @@
                 color:#121212;
                 font-size: medium;
                 padding: 5px;
+                
             }
 
             .show-button span{
@@ -188,7 +206,7 @@
 
            .attendance_form{
             border-radius: 10px;
-            background-color: rgb(255, 255, 255);
+            background-color: #A41313;
             position: fixed;
             bottom: 0;
             padding:10px;
@@ -209,6 +227,19 @@
                 background-color: rgba(255, 255, 255, 0.662);
             }
 
+            .input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Adjust the gap between input and label */
+            }
+
+            .input-container label {
+            white-space: nowrap; /* Prevents the asterisk from going to the next line */
+            font-size: 12px;
+            color: white;
+            display: inline-flex;
+            align-items: last baseline;
+            }
 
             .check-box-btn{
                 font-size:15px;
@@ -232,7 +263,7 @@
     <body th:object="${lec_info}">
         <div class="nav">
             <h2>Check-in Class</h2>
-            <div class="profile">
+            <div class="profile" >
                 <div class="icon"><a th:href="'/Lec_home_page/Lec_profile/' + ${lec_info.lec_email}"><i class="fas fa-user-circle"></i></a></div>
                 <div class="info"  >
                     <p th:text="${lec_info.first_name} + ' ' + ${lec_info.last_name}"></p>
@@ -251,23 +282,25 @@
 
 
                 <div class="bar"></div>
-                <span th:object="${selected}">
-                    <span th:text="${selected}"></span>
-                </span>
+                <div th:object="${selected}">
+                    <p class="section-info">Section - 0<span class="thsec" th:text="${selected}"></span></p>
+                </div>
             </div>
 
             <div class="announce" th:object="${selectedCourse}">
                 <form class="attendance_form" method="post" th:action="@{'/post/'+ ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${lec_info.lec_email}}" th:object="${new_post}">
+                    <div class="input-container">
                     <label for="lec_input">Enter your attendance code <span style="color: red;">*</span></label>
                                 <input type="text" id="lec_input" th:field="*{lec_input}" required/>
                      <label for="week_no">Week number <span style="color: red;">*</span></label>
                                 <input type="number" id="week_no" th:field="*{week_no}" required/><br>
-                    <a >
-                    <button type="submit" class="hide-button"><span>Cancel</span></button>
-                </a>
-                <a >
-                    <button type="submit" class="show-button"><span>Post</span></button>
-                </a>
+                    </div>
+                    
+                    <button type="submit" class="hide-button"><span>Hide</span></button>
+                
+                
+                    <button type="submit" class="show-button"><span>Show</span></button>
+
                 </form>
                 
             </div>
@@ -279,8 +312,6 @@
                             <div class="col-md-12 form-group mb-3">
                                 <label for="announce" style="font-size:25px;"><i class="far fa-comment-alt" style="font-size:20px;color:#A41313;"></i> Post</label>
                                 <textarea name="announce" id="announce" class="form-control rounded-0" th:field="*{content}"></textarea>
-                                <!-- <a href="#" class="check-box-btn" >
-                                    <button type="submit">Box &rarr;</button> </a> -->
                             </div>
    
                             <div class="col-md-12" >

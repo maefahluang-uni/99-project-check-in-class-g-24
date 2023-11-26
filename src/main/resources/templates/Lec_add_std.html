@@ -147,9 +147,9 @@
                     <p><a href="profile.html">65xxxxxxx@lamduan.mfu.ac.th</a></p>
                 </div>
             </div>
-            <div class="btn">
-                <a href="#" class="back">Back</a>
-                <a href="#" class="home">Home</a>
+            <div class="btn" th:object="${lec_info}">
+                <a th:href="@{'/Lec_home_page/Lec_course/' + ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${lec_info.lec_email}}" class="back">Back</a>
+                <a th:href="@{'/Lec_home_page/'} + ${lec_info.lec_email}"  class="home">Home</a>
             </div>
         </div>
 

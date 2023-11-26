@@ -103,11 +103,20 @@
             #st{
                 color: rgb(211, 61, 61);
             }
-            .logout i{
+            logout i{
                 font-size: 30px;
                 margin: 5px;
                 color: brown;
                 transform: translateY(20%);
+            }
+            .l_out_text{
+                display: inline-block;
+                background-color: #a41313;
+                color: #fff;
+                padding: 10px 20px;
+                font-size: 18px;
+                text-decoration: none;
+                border-radius: 10px;
             }
             
         </style>
@@ -141,7 +150,7 @@
                 <div class="logout" > 
                 <a th:href="@{/login}">
                     <i class="fas fa-sign-out-alt"></i>
-                    <span>Log Out</span>
+                    <span class="l_out_text">Log Out</span>
                 </a>  
                 </div>
             </div>

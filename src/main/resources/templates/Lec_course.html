@@ -46,6 +46,9 @@
                 text-decoration: none;
                 color: #fff;
             }
+            .info{
+                color: #ffffff;
+            }
 
             .btn a{
                 font-size:20px;
@@ -97,6 +100,23 @@
                 border: 4px solid #A41313;
             }
 
+            .section-info {
+                padding-top: 10px;
+                width: fit-content;
+                margin-left: 438px;
+                font-weight: bold;
+            }
+            .thsec{
+                position: absolute;
+                transform: translateY(-20px);
+                left: 52%;
+                font-weight: bold;
+            }
+            .thlec{
+                position: absolute;
+                left:26%;
+                transform: translateY(-9px);
+            }
             .lect-name{
                 display: flex;
                 padding-top: 25px;
@@ -110,12 +130,10 @@
                 position:relative;
             }
 
-            .pf-pic{
-                height:30px;
-                width: 30px;
-                border-radius: 15px;
-                margin-top: 5px;
-                margin-left: 5px;
+            .pf i{
+                font-size: 30px;
+                padding: 5px;
+                transform: translateX(5px) translateY(10px);
             }
 
             .pf-name{
@@ -129,6 +147,7 @@
             }
             .pf-name span{
                 color: rgb(124, 124, 124);
+                padding-left: 10px;
                
             }
 
@@ -183,7 +202,7 @@
                 padding: 10px ;
                 border-radius: 20px;
                 border: none;
-                background-color: #999999;
+                background-color: #A41313;
                 box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
                 
             }
@@ -207,7 +226,7 @@
             height: 60px;
             border-radius: 15px;
             justify-content: center;
-            box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+            
            }
 
            .announce p{
@@ -233,6 +252,17 @@
 
             .list-icon, .att-icon{
                 height: 30px;
+            }
+            .list-icon{
+                height: 30px;
+                text-decoration: none;
+                color: #000;
+                font-size: 20px;
+            }
+            .list-icon i{
+                font-size: 22px;
+                color: #A41313;
+                padding-right: 6px;
             }
         </style>
     </head>
@@ -260,15 +290,14 @@
                 <h4 th:text="${selectedCourse.course_name}"></h4>
 
                 <div class="bar"></div>
-                <span th:object="${selected}">
-                    <span th:text="${selected}"></span>
-                </span>
-
-                <div class="lect-name">Lecturer Name- Aj.<span th:text="${lec_info.first_name} + ' ' + ${lec_info.last_name}" ></span></div>
+                <div th:object="${selected}">
+                    <p class="section-info">Section - 0<span class="thsec" th:text="${selected}"></span></p>
+                </div>
+                <div class="lect-name">Lecturer Name- Aj.<span class="thlec" th:text="${lec_info.first_name} + ' ' + ${lec_info.last_name}" ></span></div>
                 
                 <div th:each="post : ${new_posts}">
                     <div class="pf">
-                         <img class="pf-pic" src="profile_pic.png">
+                         <i class="fas fa-user-circle" ></i>
                         <div class="pf-name">
                             <p th:text="${lec_info.first_name}"></p><br> <span>Lecturer</span>
                         </div>
@@ -283,7 +312,7 @@
                 
 
             <div class="pf">
-                <img class="pf-pic" src="profile_pic.png">
+                <i class="fas fa-user-circle" ></i>
                 <div class="pf-name">
                     <p th:text="${lec_info.first_name}"></p><br> <span>Lecturer</span>
                 </div>
@@ -301,20 +330,12 @@
 
             <div class="right_section" th:object="${selectedCourse}">
                
-                <a th:href="@{'/Lec_home_page/Lec_std_list/' + ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${lec_info.lec_email}}">
-                    <button class="list-std"> 
+                <a class="list-icon" th:href="@{'/Lec_home_page/Lec_std_list/' + ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${lec_info.lec_email}}">
+                     
                         
-                        <img class="list-icon" src="users-three.svg"> Student List
-                    </button>
-                </a>
-                    
-                    <br>
+                        <i class="fas fa-users"></i> Student List
 
-                    <a  th:href="@{'/Lec_home_page/Lec_att_view/' + ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${lec_info.lec_email}}">
-                        <button class="check-attendance"> 
-                        <img class="att-icon" src="fact_check.svg"> View Attendance
-                    </button>
-                    </a>
+                </a>
                     
                 
             </div>

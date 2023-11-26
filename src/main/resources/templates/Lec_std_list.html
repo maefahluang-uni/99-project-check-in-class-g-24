@@ -17,8 +17,8 @@
 
             .nav{
                 width: 100%;
-                height: 200px;
-                background-color: brown;
+                height: 150px;
+                background-color: #a52a2a;
                 border-radius: 0px 0px 20px 20px;
                 position:relative;
                 top:0;
@@ -51,7 +51,9 @@
                 color:#fff;
                 text-decoration:none; 
             }
-
+            .info{
+                color: white;
+            }
             .back{
                 margin:10px;
                 padding:10px;
@@ -94,9 +96,26 @@
                 font-weight: 600;
             }
             .bar{
-                border: 4px solid #000;
+                border: 4px solid #A41313;
+                width: 1320px;
+                display: flex;
+                justify-content: center;
+                margin-left: 10px;
+            } 
+            .addS{
+                position:absolute;
+                right:6%;
+                top: 30%;
+                background-color: #fff;
             }
-
+            .add-std{
+                border: none;
+                background-color: white;
+                margin-bottom: 8px;
+            }
+            .add-icon{
+                height: 30px;
+            }
             .container{
                 width:100%;
                 top: 43%;
@@ -107,6 +126,7 @@
             .table-color th{
                 background-color:#FFE9C2;
             }
+            
 
         </style>
     </head>
@@ -137,10 +157,10 @@
             </div>
 
             <div class="addS">
-                <a th:href="@{'/Lec_home_page/Lec_add_std/' + ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${lec_info.lec_email}}">
-                    <button class="list-std"> 
+                <a class="add-std" th:href="@{'/Lec_home_page/Lec_add_std/' + ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${lec_info.lec_email}}">
+                    <button > 
                         
-                        <img class="list-icon" src="users-three.svg"> <span> Add Student </span> 
+                        <i class="fas fa-users"></i>Add Student
                     </button>
                 </a>
             </div>
