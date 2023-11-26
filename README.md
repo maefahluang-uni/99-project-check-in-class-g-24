@@ -8,12 +8,12 @@ Check-In Class is an attendance tracking system designed to simplify the process
 
 | ID          | Name                   | Github Account             |
 |-------------|------------------------|----------------------------|
-| 6531503132  | Ah Phar                | [ahphar](https://github.com/ahpharjr)                |
-| 6531503139  | George Lalrinchhana    | [georgelalrinchhana](https://github.com/GeorgeLrc)   |
-| 6531503142  | Htet Lin Aung          | [htetlinaung](https://github.com/htetlinaung)        |
-| 6531503178  | Sai Sang Main          | [saisangmain](https://github.com/SAISENGMAIN)        |
-| 6531503190  | Thiri Swe Zin          | [thiriswezin](https://github.com/Thiriszin)          |
-| 6531503194  | Yoon Moh Moh Aung      | [yoonmohmohaung](https://github.com/6531503194)      |
+| 6531503132  | Ah Phar                | [AHPHAR](https://github.com/ahpharjr)                |
+| 6531503139  | George Lalrinchhana    | [GEORGELALRINCHHANA](https://github.com/GeorgeLrc)   |
+| 6531503142  | Htet Lin Aung          | [HTETLINAUNG](https://github.com/htetlinaung)        |
+| 6531503178  | Sai Sang Main          | [SAISENGMAIN](https://github.com/SAISENGMAIN)        |
+| 6531503190  | Thiri Swe Zin          | [THIRISWEZIN](https://github.com/Thiriszin)          |
+| 6531503194  | Yoon Moh Moh Aung      | [YOONMOHMOHAUNG](https://github.com/6531503194)      |
 
 ## Web App Deployment
 
