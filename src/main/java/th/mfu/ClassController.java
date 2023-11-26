@@ -725,7 +725,7 @@ public class ClassController {
 
         Lecturer l = new Lecturer();  
         model.addAttribute("lecturer", l);
-
+        lecRepo.save(lec);
         try{
 
             Lecturer lfind = lecRepo.findByLec_email(lec.getLec_email());

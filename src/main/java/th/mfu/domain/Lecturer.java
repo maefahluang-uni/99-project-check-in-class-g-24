@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Lecturer {
    
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO)
+    // @GeneratedValue( strategy = GenerationType.AUTO)
 
 
     private String lec_id;
