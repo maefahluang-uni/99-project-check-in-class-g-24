@@ -17,4 +17,4 @@ Check-In Class is an attendance tracking system designed to simplify the process
 
 ## Web App Deployment
 
-The web app is deployed on Google Cloud. You can access it [here](https://your-google-cloud-app-url).
+The web app is deployed on Google Cloud. You can access it [here](https://lab-cd-omwzx3fnca-uc.a.run.app/?fbclid=IwAR3ca-FkSE5VD94fMrXzlk_pAjDc6VM_DsgJTUZcg1Gw-bMTAMaGyr408NE).
