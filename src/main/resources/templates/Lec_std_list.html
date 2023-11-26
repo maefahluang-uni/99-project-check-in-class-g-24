@@ -109,9 +109,15 @@
                 background-color: #fff;
             }
             .add-std{
-                border: none;
-                background-color: white;
+                text-decoration: none;
+                color: black;
+                font-size: 20px;
                 margin-bottom: 8px;
+            }
+            .add-std i{
+                color: #A41313;
+                font-size: 22px;
+                padding-right: 6px;
             }
             .add-icon{
                 height: 30px;
@@ -158,10 +164,10 @@
 
             <div class="addS">
                 <a class="add-std" th:href="@{'/Lec_home_page/Lec_add_std/' + ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${lec_info.lec_email}}">
-                    <button > 
+                    
                         
                         <i class="fas fa-users"></i>Add Student
-                    </button>
+
                 </a>
             </div>
 
