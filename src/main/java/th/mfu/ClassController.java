@@ -631,7 +631,7 @@ public class ClassController {
              int total = lecT + stdnum;
              model.addAttribute("total", total);
      
-             return "admin_home_page";
+             return "redirect:/admin_home_page";
          }
 
         //Admin create class

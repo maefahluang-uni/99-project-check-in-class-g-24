@@ -13,7 +13,7 @@ Check-In Class is an attendance tracking system designed to simplify the process
 | 6531503142  | Htet Lin Aung          | [HTETLINAUNG](https://github.com/htetlinaung)        |
 | 6531503178  | Sai Sang Main          | [SAISENGMAIN](https://github.com/SAISENGMAIN)        |
 | 6531503190  | Thiri Swe Zin          | [THIRISWEZIN](https://github.com/Thiriszin)          |
-| 6531503194  | Yoon Moh Moh Aung      | [YOONMOHMOHAUNG](https://github.com/6531503194)      |
+| 6531503194  | Yoon Moh Moh Aung      | [6531503194](https://github.com/6531503194)      |
 
 ## Web App Deployment
 
