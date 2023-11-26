@@ -341,7 +341,7 @@
                                     <td th:text="${s.lecturer.lec_id}"></td>                                    
                                     <td th:text="${s.sec_no}"></td>
                                     <td>
-                                        <a th:href="@{/delete/{course_id}/{sec_no}(course_id=${s.course.course_id}, sec_no=${s.sec_no})}" style="text-decoration:none;">
+                                        <a th:href="@{/deleteclass/{course_id}/{sec_no}(course_id=${s.course.course_id}, sec_no=${s.sec_no})}" style="text-decoration:none;">
                                             <i class="fas fa-trash-alt"></i> Delete
                                         </a>
                                     </td>

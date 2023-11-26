@@ -31,6 +31,8 @@ public interface SectionRepository extends JpaRepository<Section, Long> {
     @Query("SELECT s FROM Section s WHERE s.course_id = :course_id AND s.sec_no = :sec_no")
     Section findByCourse_idAndSec_no(@Param("course_id")int course_id,@Param("sec_no")int sec_no);
 
+    @Query("SELECT s FROM Section s WHERE s.sec_id = :sec_id")
+    Section findBySec_id( @Param("sec_id")Long sec_id );
 
 }
 

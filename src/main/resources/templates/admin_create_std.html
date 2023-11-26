@@ -4,7 +4,6 @@
         <title>Create Student </title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
         <style type="text/css">
 
             body{
@@ -320,23 +319,28 @@
                                         <th>Last Name</th>
                                         <th>Email</th>
                                         <th>Student id</th>
-                                        <!-- <th>Course Code</th>
-                                        <th>Section</th> -->
+                                        <!-- <th>Course Code</th> -->
+                                        <th>Section ID</th>
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
-                                <tbody th:each=" s : ${students}">
+                                <tbody th:each="s, iterStat : ${students}">
 
                                     <tr>
-                                        <td th:text="*{s.std_num}"></td>
-                                        <td th:text="*{s.first_name}"></td>
-                                        <td th:text="*{s.last_name}"></td>
-                                        <td th:text="*{s.std_email}"></td>
-                                        <td th:text="*{s.std_id}"></td>
-                                        <!-- <td th:text="*{s.std_courseid}">1305217</td>
-                                        <td th:text="*{s.sec_id}">1</td> -->
-                                        <td ><a href="#">Delete</a></td>
-                                        <!-- <td><a th:href="@{/delete/{std_courseid}/{sec_id}/{std_id}(std_courseid=${s.std_courseid}, sec_id=${s.sec_id} , std_id = ${s.std_id})}" style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td> -->
+                                        <td th:text="${iterStat.index + 1}"></td>
+                                        <td th:text="${s.first_name}"></td>
+                                        <td th:text="${s.last_name}"></td>
+                                        <td th:text="${s.std_email}"></td>
+                                        <td th:text="${s.std_id}"></td>
+
+                                        <!-- <div th:if="${s.section != null}">
+                                            <span th:text="${s.section.course_id}"></span>
+                                        </div>
+                                        <div th:if="${s.section == null}">
+                                            <span>Section not assigned</span>
+                                        </div> -->
+                                        
+                                        <td><a th:href="@{/deletestd/{std_num}/{sec_id}(std_num =${s.std_num}, sec_id=${s.sec_id})}" style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td>
                                     </tr>
 
                                 </tbody>
@@ -353,29 +357,12 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
-	    <!-- jQuery js1 -->
-	    <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="text/javascript"></script>
-
-	    <!-- datatables css1 js1 -->
-
-	    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" type="text/javascript"></script>
-
         <script>
             function redirectToNewPage(){
                 window.location.href = 'admin_home_page';
             }
         </script>
 
-        <script type="text/javascript">
-		
-            $(document).ready(function(){
-
-                $('#mytable').DataTable();
-
-             });
-
-
-        </script>
     </body>
 
     

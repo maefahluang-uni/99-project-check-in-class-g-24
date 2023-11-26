@@ -29,4 +29,10 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     // @Query(value = "SELECT * FROM Student WHERE std_email = :std_email", nativeQuery = true)
     // Student findByStd(@Param("std_email") String std_email);
 
+    @Query(value = "SELECT * FROM Student s WHERE s.std_num = :std_num", nativeQuery = true)
+    Student findByStd_num(@Param("std_num") Long std_num);
+    
+    @Query("SELECT COUNT(DISTINCT s.std_id) FROM Student s")
+    Integer countDistinctStudent();
+
 }
