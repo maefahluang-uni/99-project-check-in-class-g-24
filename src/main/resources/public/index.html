@@ -1,5 +1,98 @@
-<html>
-    <body>
-        <h2>Hello Project, remove this file and start coding!</h2>
-    </body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: top;
+            align-items: center;
+            background-color: #A41313;
+            padding: 50px;
+            color: #ffffff; /* Set text color to white */
+            }
+
+        #left h1 {
+            color: #ffffff; /* Set header text color to white */
+            font-weight: bold; /* Set font weight to bold */
+        }
+
+        #left p {
+            color: #D3D3D3; /* Set paragraph text color to light gray */
+        }
+        #right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: top;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 50px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #FFF0D4; /* Add background color behind the buttons */
+            width: 500px;
+            height: 400px;
+            padding: 20px; /* Adjust padding as needed */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a drop shadow effect */
+        }
+        .button {
+            display: flex; /* Set display to flex */
+            justify-content: center; /* Center the text horizontally */
+            align-items: center; /* Center the text vertically */
+            width: 300px;
+            height: 150px;
+            padding: 12px 24px;
+            margin: 10px;
+            background-color: #A41313;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 23px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="left">
+        <h1>WELCOME TO CHECK IN CLASS</h1>
+        <p>Welcome to Check in Class! Simplify attendance tracking for educators and students with our intuitive digital platform designed for seamless classroom management.</p>
+        <p>Whether you're an institution, a teacher, or a student, Check in Class simplifies the attendance process, fostering a more organized and engaging educational experience for everyone involved. Join us in revolutionizing the way attendance is managed, and let's pave the way for a more efficient and effective learning environment together.</p>
+        <p>Explore our platform and discover a new era of classroom management with Check in Class!</p>
+    </div>
+    <div id="right">
+        <div>
+            <h1>Join Check-in Class</h1>
+            <p>Welcome to Check in Class! Simplify attendance tracking for educators and students with our intuitive digital platform designed for seamless classroom management.</p>
+        </div>
+        <div class="button-container">
+            <p>Select user role :</p>
+            <div class="button-wrapper">
+                <a href="http://127.0.0.1:8100/login" class="button">Administrator</a>
+                <a href="https://urban-couscous-66px7g59v7j2r65w-8800.app.github.dev/login" class="button">Lecturer</a>
+                <a href="https://shiny-space-train-w64q4w45g5qh5q76-8100.app.github.dev/login" class="button">Student</a>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

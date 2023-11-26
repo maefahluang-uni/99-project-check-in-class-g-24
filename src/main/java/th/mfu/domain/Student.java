@@ -1,77 +1,56 @@
 package th.mfu.domain;
 
-import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int std_num;
-    
+    private Long std_num;
     private Long std_id;
-    private String std_firstname;
-    private String std_lastname;
+    private String first_name;
+    private String last_name;
     private String std_email;
-    private int sec_id;
-    private String std_password;
-    private int c_id;
+    @Column(name = "sec_id")
+    private Long sec_id;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Course> course;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Account account;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Section> section;
+    // @ManyToMany(cascade = CascadeType.ALL, fetch  = FetchType.EAGER)
+    // private Section section;
 
-    public int getC_id() {
-        return c_id;
-    }
-
-    public void setC_id(int c_id) {
-        this.c_id = c_id;
-    }
-
-    public List<Course> getCourse() {
-        return course;
-    }
-
-    public void setCourse(List<Course> course) {
-        this.course = course;
-    }
-
-    public String getStd_password() {
-        return std_password;
-    }
-
-    public void setStd_password(String std_password) {
-        this.std_password = std_password;
-    }
-
-    public List<Section> getSection() {
-        return section;
-    }
-
-    public void setSection(List<Section> section) {
-        this.section = section;
-    }
-
-    public Student(){
+    public Student (){
 
     }
 
-    public int getStd_num() {
-        return std_num;
-    }
-
-    public void setStd_num(int std_num) {
+    public Student(Long std_num) {
         this.std_num = std_num;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
     public Long getStd_id() {
@@ -82,22 +61,6 @@ public class Student {
         this.std_id = std_id;
     }
 
-    public String getStd_firstname() {
-        return std_firstname;
-    }
-
-    public void setStd_firstname(String std_firstname) {
-        this.std_firstname = std_firstname;
-    }
-
-    public String getStd_lastname() {
-        return std_lastname;
-    }
-
-    public void setStd_lastname(String std_lastname) {
-        this.std_lastname = std_lastname;
-    }
-
     public String getStd_email() {
         return std_email;
     }
@@ -106,15 +69,35 @@ public class Student {
         this.std_email = std_email;
     }
 
-    public int getSec_id() {
+    public Long getSec_id() {
         return sec_id;
     }
 
-    public void setSec_id(int sec_id) {
-
-        this.sec_id=sec_id;
+    public void setSec_id(Long sec_id) {
+        this.sec_id = sec_id;
     }
 
-    
+    public Account getAccount() {
+        return account;
+    }
 
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Long getStd_num() {
+        return std_num;
+    }
+
+    public void setStd_num(Long std_num) {
+        this.std_num = std_num;
+    }
+
+    // public Section getSection() {
+    //     return section;
+    // }
+
+    // public void setSection(Section section) {
+    //     this.section = section;
+    // }
 }

@@ -247,7 +247,7 @@
        <!-- start left menu -->
        <div class="left">
         <div class="dashboard">
-            <a th:href="@{admin_home_page}"><i class="fas fa-tachometer-alt"></i>Dashboard</a>  
+            <a th:href="@{/admin_home_page}"><i class="fas fa-tachometer-alt"></i>Dashboard</a>  
         </div>
 
         <div class="class">
@@ -259,7 +259,7 @@
             
         </div>
         <div class="student">
-            <a th:href="@{admin_create_std}" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
+            <a th:href="@{/admin_create_std}" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
         </div>
         <button class="logout" onclick="location.href='/login'"> 
             <i class="fas fa-sign-out-alt"></i>
@@ -276,70 +276,79 @@
             <div class="form">
                 <div class="top">
                     <div class="elements">
-                        <form th:action="@{/admin_create_class}" method="post" th:object="${course}">
-                            <div class="cl">
+                        <form th:action="@{/admin_create_class}" method="post">
+                            <div th:object="${course}">
+
+                                <div class="cl">
+                                    <label for="course_name">Enter Class Name<span style="color: red;">*</span></label><br>
+                                    <input type="text" id="course_name" th:field="*{course_name}" required /><br>
+                                </div>
+                                <div class="code">
+                                    <label for="course_code">Enter Course Code<span style="color: red;">*</span></label><br>
+                                    <input type="text" id="course_code" th:field="*{course_id}" required/><br>
+                                </div>
+                                <div class="credit">
+                                    <label for="credit">Enter Credit<span style="color: red;">*</span></label><br>
+                                    <input type="text" id="credit" th:field="*{credit}" required /><br>   
+                                </div>
+
+                            </div>
+                            <!-- <div class="cl">
                                 <label for="course_name">Enter Class Name<span style="color: red;">*</span></label><br>
                                 <input type="text" id="course_name" th:field="*{course_name}" required /><br>
                             </div>
                             <div class="code">
                                 <label for="course_code">Enter Course Code<span style="color: red;">*</span></label><br>
                                 <input type="text" id="course_code" th:field="*{course_id}" required/><br>
+                            </div> -->
+                            <div class="lec_id" th:object="${lec}">
+                                <label for="Lec_id" >Enter Lecturer Id<span style="color: red;">*</span></label><br>
+                                <input type="text" id="Lec_id" th:field="*{lec_id}" required /><br>   
                             </div>
-                            <div class="lec_id">
-                                <label for="Lec_id">Enter Lecturer Id<span style="color: red;">*</span></label><br>
-                                <input type="text" id="Lec_id" th:field="*{Lec_id}" required /><br>   
-                            </div>
-                            <div class="credit">
+                            <!-- <div class="credit">
                                 <label for="credit">Enter Credit<span style="color: red;">*</span></label><br>
                                 <input type="text" id="credit" th:field="*{credit}" required /><br>   
-                            </div>
-                            <div class="sec">
-                                <label for="sec">Enter Section<span style="color: red;">*</span></label><br>
-                                <input type="text" id="sec" th:field="*{course_sec}" required /><br>   
+                            </div> -->
+                            <div class="sec" th:object="${sec}">
+                                <label for="sec" >Enter Section<span style="color: red;">*</span></label><br>
+                                <input type="text" id="sec" th:field="*{sec_no}" required /><br>   
                             </div>
                             <button type="submit" class="save">Save</button>
                         </form>
                     </div>
                         
                 </div>
-                <div class="display">
-                    <p style="color: blue;">All Classes</p>
-                    <div class="row">
-                        
-                        <div class="col-md-12">
-                            <table id="mytable" class="table border">
-                                <thead class="thead">
-                                    <tr>
-                                        <th>Course Code</th>
-                                        <th>Class Name</th>
-                                        <th>Course Credit</th>
-                                        <th>Lecturer id</th>
-                                        <th>Section</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                </thead>
-                                <tbody th:each="c : ${courses}">
-
-                                    <tr>
-                                        
-                                        <td th:text="${c.course_id}"></td>
-                                        <td th:text="${c.course_name}"></td>
-                                        <td th:text="${c.credit}"></td>
-                                        <td th:text="${c.Lec_id}"></td>
-                                        <td th:text="${c.course_sec}"></td>
-                                        <td><a th:href="@{/delete/{course_id}/{course_sec}(course_id=${c.course_id}, course_sec=${c.course_sec})}"  style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td>
-                                    
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                        
+            <div class="display">
+                <p style="color: blue;">All Classes</p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="mytable" class="table border">
+                            <thead class="thead">
+                                <tr>
+                                    <th>Course Code</th>
+                                    <th>Class Name</th>
+                                    <th>Course Credit</th>
+                                    <!-- <th>Lecturer id</th> -->
+                                    <!-- <th>Section</th> -->
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody th:each="c : ${courses}">
+                                <tr>
+                                    <td th:text="${c.course_id}"></td>
+                                    <td th:text="${c.course_name}"></td>
+                                    <td th:text="${c.credit}"></td>
+                                    <!-- <td th:text="${c.Lec_id}"></td> -->
+                                    <!-- <td th:text="${c.courseSec}"></td> -->
+                                    <td><a href="#"></i> Delete</a></td>
+                                    <!-- <td><a th:href="@{/delete/{course_id}/{sec_no}(course_id=${c.courseId}, sec_no=${c.sec_no})}" style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td> -->
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            
-        </div>
+
         <!-- end main -->
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
@@ -355,16 +364,6 @@
             function redirectToNewPage(){
                 window.location.href = 'admin_home_page';
             }
-        </script>
-
-        <script type="text/javascript">
-                
-            $(document).ready(function(){
-
-                $('#mytable').DataTable();
-
-            });
-
         </script>
 
     </body>

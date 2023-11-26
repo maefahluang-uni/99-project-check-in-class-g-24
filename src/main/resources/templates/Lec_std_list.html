@@ -1,4 +1,3 @@
-Ltviewstudentlist.html
 <!DOCTYPE html>
 <html>
     <head>
@@ -80,31 +79,6 @@ Ltviewstudentlist.html
                 width: 100%;
                 color: black;
             }
-            .addstudent a i {
-                font-size: 30px;
-                color: brown;
-                padding: 7px;
-            }
-
-            .addstudent a {
-                text-decoration: none;
-                color: #000;
-            }
-
-            .addstudent .text{
-                font-size: 20px;
-            }
-
-            .addstudent{
-                position: absolute;
-                font-weight: 600;
-                transform: translateY(50px);
-                margin-bottom: 5%;
-                margin-right: 3%;
-                right: 10%;
-            }
-
-
 
             .title{
                 line-height: 10px;
@@ -124,73 +98,85 @@ Ltviewstudentlist.html
             }
 
             .container{
-                width: 100%;
-                position: absolute;
-                bottom: 10%;
-
+                width:100%;
+                top: 43%;
+                position:absolute;
+                
             }
 
             .table-color th{
                 background-color:#FFE9C2;
             }
 
-
         </style>
     </head>
-    <body>
+    <body th:object="${lec_info}">
         <div class="nav">
             <h2>Check-in Class</h2>
-            <div class="profile">
-                <div class="icon"><a href="profile.html"><i class="fas fa-user-circle"></i></a></div>
-                <div class="info">
-                    <p><a href="profile.html">Geogre</a></p>
-                    <p><a href="profile.html">65xxxxxxx@lamduan.mfu.ac.th</a></p>
+            <div class="profile" >
+                <div class="icon"><a th:href="'/Lec_home_page/Lec_profile/' + ${lec_info.lec_email}"><i class="fas fa-user-circle"></i></a></div>
+
+                <div class="info"  >
+                    <p th:text="${lec_info.first_name} + ' ' + ${lec_info.last_name}"></p>
+                    <p th:text="${lec_info.lec_email}"></p>
                 </div>
             </div>
-            <div class="btn">
-                <a href="#" class="back">Back</a>
-                <a href="#" class="home">Home</a>
+            <div class="btn" th:object="${lec_info}">
+                <a th:href="@{'/Lec_home_page/Lec_course/' + ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${lec_info.lec_email}}" class="back">Back</a>
+                <a th:href="@{'/Lec_home_page/'} + ${lec_info.lec_email}"  class="home">Home</a>
             </div>
         </div>
-        <div class="view">
+
+        <div class="view" th:object="${selectedCourse}">
             <div class="title">
-                <h4>Software Requirements Analysis and Specification</h4>
+                <h4 th:text="${selectedCourse.course_name}"></h4>
                 <div class="bar"></div>
-                <span>Sec-01</span>
+                <span th:object="${selected}">
+                    <span th:text="${selected}"></span>
+                </span>
             </div>
-            <div class="addstudent">
-                <a href="student.html"><i class="fas fa-plus"></i></a>
-                <a class="text" href="">Add Student</a>
+
+            <div class="addS">
+                <a th:href="@{'/Lec_home_page/Lec_add_std/' + ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${lec_info.lec_email}}">
+                    <button class="list-std"> 
+                        
+                        <img class="list-icon" src="users-three.svg"> <span> Add Student </span> 
+                    </button>
+                </a>
             </div>
 
             <div class="container">
-                <h5>Lecture Name-Aj.Sujitra Arwatchanaukul</h5>
+                <h5>Lecture Name-Aj. <span th:text="${lec_info.first_name} + ' ' + ${lec_info.last_name}"></span></h5>
                 <div class="row">
                     <div class="col-md-12">
+                        
                         <table id="mytable" class="table border">
-                            <thead>
+
+                            <thead >
                                 <tr class="table-color">
                                     <th>Student ID</th>
                                     <th>Full Name</th>
+                                    <!-- <th>First Name</th>
+                                    <th>Last Name</th> -->
                                     <th>Lamduan Mail</th>
-                                    <th></th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr th:each="student : ${students}">
-                                    <td th:text="${student.studentId}"></td>
-                                    <td th:text="${student.fullName}"></td>
-                                    <td th:text="${student.lamduanMail}"></td>
-                                    <td>
-                                        <a class="btn btn-danger" th:href="@{/delete-student/{id}(id=${student.id})}">Delete</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                </div>
 
+                            <tbody >
+                                <tr th:each=" student : ${students}">
+                                    <td th:text="${student.std_id}"></td>
+                                    <td th:text="${student.first_name} + ' ' + ${student.last_name}"></td>
+                                    <!-- <td th:text="${student.last_name}"></td> -->
+                                    <td th:text="${student.std_email}"></td>
+                                    <td>Delete</td>
+                                    <!-- <td><a th:href="@{/delete/{std_courseid}/{sec_id}/{std_id}(std_courseid=${s.std_courseid}, sec_id=${s.sec_id} , std_id = ${s.std_id})}" style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td> -->
+                                </tr>
+                                </tbody>
+                    </table>
+                </div>
+                
+            </div>
             </div>
             
         </div>
@@ -201,6 +187,19 @@ Ltviewstudentlist.html
 	    <!-- jQuery js1 -->
 	    <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="text/javascript"></script>
 
+	    <!-- datatables css1 js1 -->
+
+	    <!-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+	    <script type="text/javascript">
+		
+		    $(document).ready(function(){
+
+			    $('#mytable').DataTable();
+
+		    });
+
+	    </script> -->
 
     </body>
 </html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Total attendance</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+	    <!-- datatables css1 js1 -->
+
+	    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+        <style type="text/css">
+
+            body{
+                margin:0;
+                padding:0;
+            }
+
+            .nav{
+                width: 100%;
+                height: 150px;
+                background-color: brown;
+                border-radius: 0px 0px 20px 20px;
+                position:relative;
+                top:0;
+            }
+
+            .nav h2{
+                color:#fff;
+                font-weight:bold;
+                margin:10px;
+                padding:10px;
+            }
+
+            .profile{
+                position: absolute;
+                top: 3%;
+                right: 5%;
+                line-height: 5px;
+            }
+            .icon{
+                font-size: 40px;
+                transform: translateX(-50px) translateY(30px);
+            }
+            .profile a{
+                text-decoration: none;
+                color: #fff;
+            }
+
+            .btn a{
+                font-size:20px;
+                color:#fff;
+                text-decoration:none; 
+            }
+
+            .back{
+                margin:10px;
+                padding:10px;
+
+                position:absolute;
+                left:0;
+                bottom:0;
+            }
+
+            .home{
+                margin:10px;
+                padding:10px;
+                position:absolute;
+                right:0;
+                bottom:0;
+            }
+
+            .attendance-view{
+                display: flex;
+            }
+
+            .left_section{
+                flex: 1;
+            }
+
+            
+            .mid-section{
+                line-height: 10px;
+                flex: 4;
+               
+            }
+
+            .mid-section h4,.mid-section span, .mid-section p{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-top: 10px;
+            } 
+            
+            .bar{
+                border: 4px solid #A41313;
+            }
+
+            .mid-section span{
+                font-weight: 600;
+            }
+
+            .total-att{
+                background-color: antiquewhite;
+                margin: 50px 5px 50px 5px;
+                border-radius: 8px;
+                padding-bottom: 50px;
+            }
+
+            .total-att p{
+                font-weight: 500;
+                padding-top: 25px ;
+                padding-bottom: 35px;
+                font-size: larger;
+            }
+
+            .first-row{
+                display: flex;
+                flex-direction: row;
+                background-color: #FCEDD2;
+            }
+
+            .w1, .w2, .w3, .w4, .w5{
+                background-color: #a1f4d24c;
+                flex: 45px;
+                margin: 5px 10px 30px 30px;
+                text-align: center;
+                border-radius: 8px;            
+            }
+
+            .first-row p{
+                line-height: 0;
+                padding-bottom: 0;
+            }
+
+            .w5{
+                margin-right: 30px;
+            }
+
+            .first-row span{
+                padding: 40px 20px 40px 20px ;
+                background-color: #81ddb74c;
+            }
+            
+            .second-row{
+                display: flex;
+                flex-direction: row;
+                background-color: #FCEDD2;
+            }
+
+            .w6, .w7, .w8, .w9, .w10{
+                background-color: #A413131A;
+                flex: 45px;
+                margin: 5px 10px 30px 30px;
+                text-align: center;
+                border-radius: 8px;            
+            }
+
+            .second-row p{
+                line-height: 0;
+                padding-bottom: 0;
+            }
+
+            .w10{
+                margin-right: 30px;
+            }
+
+            .second-row span{
+                padding: 40px 20px 40px 20px ;
+                background-color: #A4131333;
+            }
+
+            .right_section{
+                flex: 1;
+            }
+            
+        </style>
+    </head>
+    <body>
+        
+        <div class="nav">
+            <h2>Check-in Class</h2>
+            <div class="profile">
+                <div class="icon"><a th:href="'/Std_home_page/Std_profile/' + ${student_info.std_email}"><i class="fas fa-user-circle"></i></a></div>
+                <div class="info">
+                    <p th:text="${student_info.first_name} + ' ' + ${student_info.last_name}"></p>
+                    <p th:text="${student_info.std_email}"></p>
+                </div>
+            </div>
+            <div class="btn" th:object="${selectedCourse}">
+                <a th:href="@{'/Std_home_page/Std_course/' + ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${student_info.std_email}}" class="back">Back</a>
+                <a th:href="'/Std_home_page/' + ${student_info.std_email}"  class="home">Home</a>
+            </div>
+        </div>
+
+        <div class="attendance-view">
+            <div class="left_section"> </div>
+           
+            <div class="mid-section">
+                <div th:object="${selectedCourse}">
+                    <h4 th:text="${selectedCourse.course_name}"></h4>
+                    <div class="bar"></div>
+                    <span th:text="${sec_no}">Sec-</span>
+                </div>
+                  
+
+                <div class="total-att">
+                    <p>Total attendance submission</p>
+                    <div class="first-row">
+                        <div class="w1"><p>week 01</p> <span> Check In</span></div>
+                        <div class="w2"><p>week 02</p> <span> Check In</span></div>
+                        <div class="w3"><p>week 03</p> <span> Check In</span></div>
+                        <div class="w4"><p>week 04</p> <span> Check In</span></div>
+                        <div class="w5"><p>week 05</p> <span> Check In</span></div>
+                    </div>
+
+                    <div class="second-row">
+                        <div class="w6"><p>week 06</p> <span>No-Check In</span></div>
+                        <div class="w7"><p>week 07</p> <span>No Check In</span></div>
+                        <div class="w8"><p>week 08</p> <span>No Check In</span></div>
+                        <div class="w9"><p>week 09</p> <span>No Check In</span></div>
+                        <div class="w10"><p>week 10</p> <span>No Check In</span></div>
+                    </div>
+                    
+                </div>
+                
+            </div>     
+        
+            <div class="right_section"></div>
+        
+        </div>
+
+    </body>
+</html>

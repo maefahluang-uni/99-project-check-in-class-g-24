@@ -1,88 +1,108 @@
--- Inserting dummy data for Section table
-INSERT INTO section (sec_id, course_id, Lec_id, sec_no) VALUES 
-(1, 101, 'LEC001', 1),
-(2, 102, 'LEC002', 2),
-(3, 103, 'LEC003', 1),
-(4, 104, 'LEC004', 3);
-
--- Inserting dummy data for Lecturer table
-INSERT INTO lecturer (lec_email, Lec_id, lec_firstname, lec_lastname, lec_password) VALUES 
-('john.lecturer@example.com', 'LEC001', 'John', 'Doe', 'lecturerPass123'),
-('jane.lecturer@example.com', 'LEC002', 'Jane', 'Smith', 'lec456' ),
-('bob.lecturer@example.com', 'LEC003', 'Bob', 'Johnson', 'secureLecPwd'),
-('alice.lecturer@example.com', 'LEC004', 'Alice', 'Williams', 'lec789');
-
--- Inserting dummy data for Course table
-INSERT INTO course (id,course_id, Lec_id, course_name, credit,course_sec) VALUES 
-(1,101, 'LEC001', 'Mathematics', 4 ,10),
-(2,102, 'LEC002', 'History',3, 5),
-(3,103, 'LEC003', 'Physics', 4, 1),
-(4,104, 'LEC004', 'Computer Science', 4, 6);
-
--- Inserting dummy data for Attendance table
-INSERT INTO attendance (attendance_id, course_id, sec_id, std_num, date, status, week_no) VALUES 
-(1, 101, 1, 1, CURRENT_DATE, 'Present', 1),
-(2, 102, 2, 2, CURRENT_DATE, 'Absent', 1),
-(3, 103, 1, 3, CURRENT_DATE, 'Present', 1),
-(4, 104, 3, 4, CURRENT_DATE, 'Present', 1);
-
--- Inserting dummy data for AdminC table
-INSERT INTO adminc (admin_email, admin_password) VALUES 
-('admin@example.com', 'a1');
-
--- Inserting dummy data for Student table
-INSERT INTO student (std_num, std_id, std_firstname, std_lastname, std_email, sec_id, std_password, c_id)
-VALUES
-  (1, 1001, 'Student1', 'Lastname1', 's1@example.com', 1, 's1', 101),
-  (2, 1002, 'Student2', 'Lastname2', 'student2@example.com', 2, 'studentPass2', 102),
-  (3, 1003, 'Student3', 'Lastname3', 'student3@example.com', 1, 'studentPass3', 103),
-  (4, 1001, 'Student1', 'Lastname1', 'student1@example.com', 1, 'studentPass1', 104),
-  (5, 1002, 'Student2', 'Lastname2', 'student2@example.com', 2, 'studentPass2', 101);
-
 -- INSERT INTO ADMIN (ADMIN_ID, ADMIN_NAME) VALUES (01, 'AH PHAR');
 -- INSERT INTO ADMIN (ADMIN_ID, ADMIN_NAME) VALUES (02, 'GEORGE');
 -- INSERT INTO ADMIN (ADMIN_ID, ADMIN_NAME) VALUES (03, 'SMIZZ');
 
+-- -----------Student table--------------------------------------------------------------
+
+-- CREATE TABLE 'Student' (
+--     'std_num'  int,
+--     'std_id'   int(10),
+--     'first_name' varchar(50),
+--     'last_name'  varchar(50),
+--     'std_email'  varchar(50),
+--     'sec_id'   int,
+-- )
+-- INSERT INTO 'Student' ('std_num', 'std_id', 'first_name', 'last_name', 'std_email', 'sec_id') VALUES 
+--                     (1, 6531503132, 'AH','PHAR','6531503132@Lamduan.mfu.ac.th','1');
+--                     (2, 6531503139, 'GEORGE','LARINCHANA','6531503139@Lamduan.mfu.ac.th','1');
+--                     (3, 6531503142, 'HTET','LIN AUNG','6531503142@Lamduan.mfu.ac.th','1');
+--                     (4, 6531503178, 'SAI','SENG MAIN','6531503178@Lamduan.mfu.ac.th','1');
+--                     (5, 6531503190, 'THIRI','SHWE SIN','6531503190@Lamduan.mfu.ac.th','1');
+--                     (6, 6531503194, 'YOON','MOH MOH AUNG','6531503194@Lamduan.mfu.ac.th','1');
+
+-- ---------------------------------------------------------------------------------------------------
 
 -- INSERT INTO LECTURER (LEC_ID, FIRST_NAME, LAST_NAME, LEC_EMAIL) VALUES ('L0001','AJARN','NACHA','nacha@lamduan.mfu.ac.th');
 -- INSERT INTO LECTURER (LEC_ID, FIRST_NAME, LAST_NAME, LEC_EMAIL) VALUES ('L0002','AJARN','YING','ying@lamduan.mfu.ac.th');
 -- INSERT INTO LECTURER (LEC_ID, FIRST_NAME, LAST_NAME, LEC_EMAIL) VALUES ('L0003','AJARN','SIRAK','sirak@lamduan.mfu.ac.th');
 -- INSERT INTO LECTURER (LEC_ID, FIRST_NAME, LAST_NAME, LEC_EMAIL) VALUES ('L0004','AJARN','BONJOUR','bonjour@lamduan.mfu.ac.th');
 
+-- -----------------Account table---------------------------------------------------------------------
 
--- INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (1, 6531503132, 'AH','PHAR','6531503132@Lamduan.mfu.ac.th','1');
--- INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (2, 6531503139, 'GEORGE','LARINCHANA','6531503139@Lamduan.mfu.ac.th','1');
--- INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (3, 6531503142, 'HTET','LIN AUNG','6531503142@Lamduan.mfu.ac.th','1');
--- INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (4, 6531503178, 'SAI','SENG MAIN','6531503178@Lamduan.mfu.ac.th','1');
--- INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (5, 6531503190, 'THIRI','SHWE SIN','6531503190@Lamduan.mfu.ac.th','1');
--- INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (6, 6531503194, 'YOON','MOH MOH AUNG','6531503194@Lamduan.mfu.ac.th','1');
+-- CREATE TABLE 'Account'(
+--     'acc_id' int,
+--     'password' varchar(50) ,
+--     'std_id' int(10) ,
+--     'lec_id' varchar(5),
+--     'admin_id' int(2)
+-- )
 
-
--- INSERT INTO PASSWORD (PASSWORD_ID, STD_ID, LEC_ID, ADMIN_ID) VALUES ('password', 6531503132, NULL, NULL);
--- INSERT INTO PASSWORD (PASSWORD_ID, STD_ID, LEC_ID, ADMIN_ID) VALUES ('password', NULL, 'L0001', NULL);
--- INSERT INTO PASSWORD (PASSWORD_ID, STD_ID, LEC_ID, ADMIN_ID) VALUES ('password', NULL, NULL, 01);
-
-
--- INSERT INTO SECTION (SEC_ID, COURSE_ID, LEC_ID, SEC_NO) VALUES(1, 1305217, 'L0003', 01);
--- INSERT INTO SECTION (SEC_ID, COURSE_ID, LEC_ID, SEC_NO) VALUES(2, 1305217, 'L0003', 01);
--- INSERT INTO SECTION (SEC_ID, COURSE_ID, LEC_ID, SEC_NO) VALUES(3, 1305215, 'L0001', 03);
--- INSERT INTO SECTION (SEC_ID, COURSE_ID, LEC_ID, SEC_NO) VALUES(4, 1305215, 'L0001', 05);
--- INSERT INTO SECTION (SEC_ID, COURSE_ID, LEC_ID, SEC_NO) VALUES(5, 1501208, 'L0002', 06);
+-- INSERT INTO 'Account' ('acc_id','password' , 'std_id', 'lec_id', 'admin_id') VALUES 
+--                     (1,'password', 6531503132, NULL, NULL);
+--                     (2,'password', NULL, 'L0001', NULL);
+--                     (3,'password', NULL, NULL, 01);
+--                     (4,'password', 6531503139, NULL, NULL);
+--                     (5,'password', 6531503142, NULL, NULL);
+--                     (6,'password', 6531503142, NULL, NULL);
 
 
--- INSERT INTO COURSE (COURSE_ID, COURSE_NAME, CREDIT) VALUES (1305217, 'SOFTWARE REQUIREMENTS ANALYSIS ANS SPECIFICATION', 03);
--- INSERT INTO COURSE (COURSE_ID, COURSE_NAME, CREDIT) VALUES (1305215, 'WEB APPLICATION DEVELOPMENT', 03);
--- INSERT INTO COURSE (COURSE_ID, COURSE_NAME, CREDIT) VALUES (1501208, 'DATABASE SYSTEMS', 03);
+INSERT INTO ACCOUNT (ACC_ID, PASSWORD, STD_EMAIL, LEC_EMAIL, ADMIN_EMAIL) VALUES (1,'password', '6531503132@lamduan.mfu.ac.th', NULL, NULL);
+INSERT INTO ACCOUNT (ACC_ID, PASSWORD, STD_EMAIL, LEC_EMAIL, ADMIN_EMAIL) VALUES (2,'hello', '6531503139@lamduan.mfu.ac.th', NULL, NULL);
+INSERT INTO ACCOUNT (ACC_ID, PASSWORD, STD_EMAIL, LEC_EMAIL, ADMIN_EMAIL) VALUES (3,'hi', '6531503142@lamduan.mfu.ac.th', NULL, NULL);
+INSERT INTO ACCOUNT (ACC_ID, PASSWORD, STD_EMAIL, LEC_EMAIL, ADMIN_EMAIL) VALUES (4,'fff', NULL, 'nacha@lamduan.mfu.ac.th', NULL);
+INSERT INTO ACCOUNT (ACC_ID, PASSWORD, STD_EMAIL, LEC_EMAIL, ADMIN_EMAIL) VALUES (5,'aaa', NULL, NULL, 'ms.thiri@gmail.com');
 
 
--- INSERT INTO ATTENCANCE (ATTENCANCE_ID, STD_NUM, DATE, STATUS, WEEK_NO) VALUES (1, 1, '2023-11-15 18:00:00', 'Y', 01 );
--- INSERT INTO ATTENCANCE (ATTENCANCE_ID, STD_NUM, DATE, STATUS, WEEK_NO) VALUES (2, 6, '2023-11-15 18:00:00', 'Y', 01 );
--- INSERT INTO ATTENCANCE (ATTENCANCE_ID, STD_NUM, DATE, STATUS, WEEK_NO) VALUES (3, 2, '2023-11-15 18:00:00', 'Y', 01 );
--- INSERT INTO ATTENCANCE (ATTENCANCE_ID, STD_NUM, DATE, STATUS, WEEK_NO) VALUES (4, 3, '2023-11-15 18:00:00', 'Y', 01 );
--- INSERT INTO ATTENCANCE (ATTENCANCE_ID, STD_NUM, DATE, STATUS, WEEK_NO) VALUES (5, 5, '2023-11-15 18:00:00', 'Y', 01 );
--- INSERT INTO ATTENCANCE (ATTENCANCE_ID, STD_NUM, DATE, STATUS, WEEK_NO) VALUES (6, 4, '2023-11-15 18:00:00', 'Y', 01 );
+INSERT INTO ADMIN (ADMIN_ID, ADMIN_NAME, ADMIN_EMAIL) VALUES (01, 'AH PHAR', 'mr.ahphar@gmail.com');
+INSERT INTO ADMIN (ADMIN_ID, ADMIN_NAME, ADMIN_EMAIL) VALUES (02, 'THIRI', 'ms.thiri@gmail.com');
+INSERT INTO ADMIN (ADMIN_ID, ADMIN_NAME, ADMIN_EMAIL) VALUES (03, 'YOON', 'ms.yoon@gmailcom');
 
 
+INSERT INTO LECTURER (LEC_ID, FIRST_NAME, LAST_NAME, LEC_EMAIL) VALUES ('L0001','AJARN','NACHA','nacha@lamduan.mfu.ac.th');
+INSERT INTO LECTURER (LEC_ID, FIRST_NAME, LAST_NAME, LEC_EMAIL) VALUES ('L0002','AJARN','YING','ying@lamduan.mfu.ac.th');
+INSERT INTO LECTURER (LEC_ID, FIRST_NAME, LAST_NAME, LEC_EMAIL) VALUES ('L0003','AJARN','SIRAK','sirak@lamduan.mfu.ac.th');
+INSERT INTO LECTURER (LEC_ID, FIRST_NAME, LAST_NAME, LEC_EMAIL) VALUES ('L0004','AJARN','BONJOUR','bonjour@lamduan.mfu.ac.th');
 
 
+INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (1, 6531503132, 'AH','PHAR','6531503132@lamduan.mfu.ac.th',5);
+INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (2, 6531503132, 'AH','PHAR','6531503132@lamduan.mfu.ac.th',2);
+INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (3, 6531503132, 'AH','PHAR','6531503132@lamduan.mfu.ac.th',3);
+INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (4, 6531503132, 'AH','PHAR','6531503132@lamduan.mfu.ac.th',1);
+INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (5, 6531503139, 'GEORGE','LARINCHANA','6531503139@lamduan.mfu.ac.th',5);
+INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (6, 6531503142, 'HTET','LIN AUNG','6531503142@lamduan.mfu.ac.th',1);
+INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (7, 6531503178, 'SAI','SENG MAIN','6531503178@lamduan.mfu.ac.th',1);
+INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (8, 6531503190, 'THIRI','SHWE SIN','6531503190@lamduan.mfu.ac.th',4);
+INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (9, 6531503194, 'YOON','MOH MOH AUNG','6531503194@lamduan.mfu.ac.th',4);
+INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (11, 6531503139, 'GEORGE','LARINCHANA','6531503139@lamduan.mfu.ac.th',2);
+INSERT INTO STUDENT (STD_NUM, STD_ID, FIRST_NAME, LAST_NAME, STD_EMAIL, SEC_ID) VALUES (12, 6531503139, 'GEORGE','LARINCHANA','6531503139@lamduan.mfu.ac.th',3);
 
+
+INSERT INTO SECTION (SEC_ID, COURSE_ID, LEC_ID, SEC_NO) VALUES(1, 1305217, 'L0003', 01);
+INSERT INTO SECTION (SEC_ID, COURSE_ID, LEC_ID, SEC_NO) VALUES(2, 1501111, 'L0003', 01);
+INSERT INTO SECTION (SEC_ID, COURSE_ID, LEC_ID, SEC_NO) VALUES(3, 1501108, 'L0001', 03);
+INSERT INTO SECTION (SEC_ID, COURSE_ID, LEC_ID, SEC_NO) VALUES(4, 1305215, 'L0001', 05);
+INSERT INTO SECTION (SEC_ID, COURSE_ID, LEC_ID, SEC_NO) VALUES(5, 1501208, 'L0002', 06);
+
+INSERT INTO POST (P_ID, CONTENT, LEC_INPUT,WEEK_NO,  SEC_ID) VALUES (1, 'Hello forks','1111',  01 ,4);
+INSERT INTO POST (P_ID, CONTENT,LEC_INPUT,WEEK_NO,  SEC_ID) VALUES (2, 'hhhhhhhhhhhhhhhhhhhhhh','1111', 01 ,4);
+INSERT INTO POST (P_ID, CONTENT, LEC_INPUT,WEEK_NO, SEC_ID) VALUES (3, 'sssssssssssssssssss','1111', 01 ,4);
+INSERT INTO POST (P_ID, CONTENT, LEC_INPUT,WEEK_NO,  SEC_ID) VALUES (4, 'eetefeeeeeeeeeeeeeeffffeeess','1111',  01 ,3);
+INSERT INTO POST (P_ID, CONTENT,LEC_INPUT,WEEK_NO,  SEC_ID) VALUES (5, 'eetefeeeffffeeess','1111', 01 ,3);
+INSERT INTO POST (P_ID, CONTENT, LEC_INPUT,WEEK_NO, SEC_ID) VALUES (6, 'eetefeeeeeeeeeeedfeeeeeev rhreherheeffffeeess','1111',  01 ,3);
+INSERT INTO POST (P_ID, CONTENT, LEC_INPUT,WEEK_NO,  SEC_ID) VALUES (7, 'Hello forks','1111',  01 ,5);
+
+INSERT INTO COURSE (COURSE_ID, COURSE_NAME, CREDIT) VALUES (1305217, 'SOFTWARE REQUIREMENTS ANALYSIS ', 03);
+INSERT INTO COURSE (COURSE_ID, COURSE_NAME, CREDIT) VALUES (1305215, 'WEB APPLICATION DEVELOPMENT', 03);
+INSERT INTO COURSE (COURSE_ID, COURSE_NAME, CREDIT) VALUES (1501208, 'DATABASE SYSTEMS', 03);
+INSERT INTO COURSE (COURSE_ID, COURSE_NAME, CREDIT) VALUES (1501108, 'FRANCH', 03);
+INSERT INTO COURSE (COURSE_ID, COURSE_NAME, CREDIT) VALUES (1501111, 'MATHS FOR ENGINEERING 2', 03);
+INSERT INTO COURSE (COURSE_ID, COURSE_NAME, CREDIT) VALUES (1502222, 'PROBABILITY', 03);
+
+
+INSERT INTO ATTENDANCE (ATT_ID, STD_NUM,  STATUS, WEEK_NO, STD_INPUT, SEC_ID) VALUES (1, 1,  false ,'2222', 01 ,4);
+INSERT INTO ATTENDANCE (ATT_ID, STD_NUM,  STATUS, WEEK_NO, STD_INPUT, SEC_ID) VALUES (2, 6,  false ,'2222', 01 ,4);
+INSERT INTO ATTENDANCE (ATT_ID, STD_NUM,  STATUS, WEEK_NO, STD_INPUT,SEC_ID) VALUES (3, 3,  false ,'2222', 01 ,3);
+INSERT INTO ATTENDANCE (ATT_ID, STD_NUM,  STATUS, WEEK_NO, STD_INPUT, SEC_ID) VALUES (4, 3,  true ,'1111', 01 ,3);
+INSERT INTO ATTENDANCE (ATT_ID, STD_NUM, STATUS, WEEK_NO, STD_INPUT, SEC_ID) VALUES (5, 1,  true ,'1111', 01 ,5);
+INSERT INTO ATTENDANCE (ATT_ID, STD_NUM,  STATUS, WEEK_NO, STD_INPUT,SEC_ID) VALUES (6, 4,  true ,'1111', 01 ,4);
+INSERT INTO ATTENDANCE (ATT_ID, STD_NUM,  STATUS, WEEK_NO, STD_INPUT,SEC_ID) VALUES (7, 7,  true ,'1111', 01 ,4);

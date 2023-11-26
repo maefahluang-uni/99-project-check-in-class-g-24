@@ -1,61 +1,45 @@
 package th.mfu.domain;
 
+
+import java.util.HashSet;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
-
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 public class Course {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    
+
     private int course_id;
     private String course_name;
-    private String Lec_id;
     private int credit;
-    private int course_sec;
-    
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Lecturer> Lecturer;
-
-    public int getCourse_sec() {
-        return course_sec;
-    }
-
-    public void setCourse_sec(int course_sec) {
-        this.course_sec = course_sec; 
-    }
-
-    
-    public String getLec_id() {
-        return Lec_id;
-    }
-
-    public void setLec_id(String lec_id) {
-        Lec_id = lec_id;
-    }
-
-    public List<Lecturer> getLecturer() {
-        return Lecturer;
-    }
-
-    public void setLecturer(List<Lecturer> lecturer) {
-        Lecturer = lecturer;
-    }
-
-    
+    @JoinTable(
+        name = "enrollments_course",  // This is the name of the join table
+        joinColumns = @JoinColumn(name = "course_id"),  // Column in the join table that references the Student
+        inverseJoinColumns = @JoinColumn(name = "sec_id")  // Column in the join table that references the Course
+    )
+    private List<Section> section;
 
     public Course(){
 
+    }
+
+    public Course(int course_id) {
+        this.course_id = course_id;
     }
 
     public int getCourse_id() {
@@ -82,14 +66,13 @@ public class Course {
         this.credit = credit;
     }
 
-     public int getId() {
-        return id;
+    public List<Section> getSection() {
+        return section;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSection(List<Section> section) {
+        this.section = section;
     }
 
-    
-
+   
 }

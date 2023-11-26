@@ -9,7 +9,7 @@
     margin: 0;
     padding: 0;
   }
-  
+ 
   .container {
     width: 1440px;
     height: 1024px;
@@ -18,7 +18,7 @@
     position: relative;
     overflow: hidden;
   }
-  
+ 
   .background {
     background: #a41313;
     width: 161px;
@@ -29,7 +29,7 @@
     left: 0;
     top: 0;
   }
-  
+ 
   .content {
     width: 462px;
     height: 745.14px;
@@ -39,14 +39,14 @@
     color: #ffffff;
     font-family: "Poppins", sans-serif;
   }
-  
+ 
   .heading {
     font-size: 60px;
     letter-spacing: -2px;
     line-height: 1;
     text-align: center;
   }
-  
+ 
   .description {
     font-size: 18px;
     letter-spacing: 3;
@@ -55,7 +55,7 @@
     margin-top: 10px;
     text-align: center;
   }
-  
+ 
   .join-section {
     width: 675px;
     height: 836px;
@@ -64,7 +64,7 @@
     top: 102px;
     color: #080814;
   }
-  
+ 
   .join-heading {
     width: 549px;
     height: 140px;
@@ -87,6 +87,7 @@
     margin-bottom: 20px;
 }
 
+
 .mail_div input,
 .pw_div input {
     width: 80%;
@@ -95,6 +96,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
 
 .login_button a {
     display: inline-block;
@@ -107,11 +109,21 @@
     transition: background-color 0.3s ease;
 }
 
+
 .login_button a:hover {
     background-color: #333;
 }
+
+
+.error-message{
+  color: red;
+  font-size: bold;
+  padding: 10px;
+  display: block;
+}
     </style>
   </head>
+
 
   <body>
     <div class="container">
@@ -136,27 +148,32 @@
           <div class="join-heading">Join Check-In Class</div>
           <div class="login_box">
 
+
             <form th:action="@{/login}" method="post" th:object="${user}">
               <div class="mail_div">
-                  <label for="std_email">Lamduan Email:</label><br />
-                  <span th:text="${error}"></span>
-                <input type="email" id="std_email" th:field="*{email}" required/>
+                  <label for="std-email">Lamduan Email:</label><br />
+                  <input type="email" id="std_id" name="std_email" th:field="*{std_email}" required/>
                   <br> <br> <br>
-              </div> 
+              </div>
               <div class="pw_div">
-                  <label for="std_password">Password:</label><br />
-                  <input type="password" id="std_password" th:field="*{password}" required/>
+                  <label for="password">Password:</label><br />
+                  <input type="password" id="password" name="password" th:field="*{password}" required/>
+                  <span class="error-message"th:text="${error}"></span>
                   <br><br><br>
               </div>
+             
+               
+         
               <div class="login_button">
                   <button type="submit">Login</button>
               </div>
           </form>
-          
+         
+
+
           </div>
         </div>
       </div>
     </div>
   </body>
 </html>
-

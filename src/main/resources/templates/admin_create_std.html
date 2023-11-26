@@ -245,19 +245,19 @@
        <!-- start left menu -->
        <div class="left">
         <div class="dashboard">
-            <a th:href="admin_home_page"><i class="fas fa-tachometer-alt"></i>Dashboard</a>  
+            <a th:href="@{/admin_home_page}"><i class="fas fa-tachometer-alt"></i>Dashboard</a>  
         </div>
 
         <div class="class">
-            <a th:href="admin_create_class" class="ic"><i class="fas fa-chalkboard"></i>Create Class</a>
+            <a th:href="@{/admin_create_class}" class="ic"><i class="fas fa-chalkboard"></i>Create Class</a>
             
         </div>
         <div class="teacher">
-            <a th:href="admin_create_lec" class="ic"><i class="fas fa-chalkboard-teacher"></i>Create Lecturer</a>
+            <a th:href="@{/admin_create_lec}" class="ic"><i class="fas fa-chalkboard-teacher"></i>Create Lecturer</a>
             
         </div>
         <div class="student">
-            <a th:href="admin_create_std" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
+            <a th:href="@{/admin_create_std}" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
            
         </div>
         <button class="logout" onclick="location.href='/login'"> 
@@ -271,37 +271,37 @@
         <div class="main">
             <h3 class="title">Create Student</h3>
             <div class="maintop">
-                <a class="hm" th:href="admin_home_page">Home <a class="dhb">\ Dashboard</a></a>
+                <a class="hm" th:href="@{/admin_home_page}">Home <a class="dhb">\ Dashboard</a></a>
             </div>
             <div class="form">
                 <div class="top">
                     <form th:action="@{/admin_create_std}" method="post" th:object="${student}">
                         <div class="elements">
                             <div class="fn">
-                                <label for="std_firstname">First Name<span style="color: red;">*</span></label><br>
-                                <input type="text" id="std_firstname" th:field="*{std_firstname}" required/><br>
+                                <label for="first_name">First Name<span style="color: red;">*</span></label><br>
+                                <input type="text" id="first_name" th:field="*{first_name}" required/><br>
                             </div>
                             <div class="ln">
-                                <label for="std_lastname">Last Name<span style="color: red;">*</span></label><br>
-                                <input type="text" id="std_lastname" th:field="*{std_lastname}" required/><br>
+                                <label for="last_name">Last Name<span style="color: red;">*</span></label><br>
+                                <input type="text" id="last_name" th:field="*{last_name}" required/><br>
                             </div>
                             <div class="em">
                                 <label for="std_email">Email<span style="color: red;">*</span></label><br>
                                 <input type="email" id="std_email" th:field="*{std_email}" required/><br>
                             </div>
-                            <div class="fn">
-                                <label for="std_id">First Name<span style="color: red;">*</span></label><br>
+                            <div class="id">
+                                <label for="std_id">Enter Student ID<span style="color: red;">*</span></label><br>
                                 <input type="text" id="std_id" th:field="*{std_id}" required/><br>
                             </div>
-                            <div class="sec">
+                            <!-- <div class="sec">
                                 <label for="sec_id">Select Section<span style="color: red;">*</span></label><br>
                                 <input type="text" id="sec_id" th:field="*{sec_id}" placeholder="--Select Section--" required/><br>
                                 
                             </div>
                             <div class="course">
                                 <label for="course_id">Enter Course Code<span style="color: red;">*</span></label><br>
-                                <input type="text" id="course_id" th:field="*{c_id}" required/><br>
-                            </div>
+                                <input type="text" id="course_id" th:field="*{std_courseid}" required/><br>
+                            </div> -->
                             
                             <button type="submit" class="save">Save</button>
                         </div>
@@ -320,8 +320,8 @@
                                         <th>Last Name</th>
                                         <th>Email</th>
                                         <th>Student id</th>
-                                        <th>Course Code</th>
-                                        <th>Section</th>
+                                        <!-- <th>Course Code</th>
+                                        <th>Section</th> -->
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
@@ -329,46 +329,16 @@
 
                                     <tr>
                                         <td th:text="*{s.std_num}"></td>
-                                        <td th:text="*{s.std_firstname}">Ko</td>
-                                        <td th:text="*{s.std_lastname}">Sai</td>
-                                        <td th:text="*{s.std_email}">6531503178@lamduan.mfu.ac.th</td>
+                                        <td th:text="*{s.first_name}"></td>
+                                        <td th:text="*{s.last_name}"></td>
+                                        <td th:text="*{s.std_email}"></td>
                                         <td th:text="*{s.std_id}"></td>
-                                        <td th:text="*{s.c_id}">1305217</td>
-                                        <td th:text="*{s.sec_id}">1</td>
-                                        <td><a th:href="@{/delete/{std_id}(std_id=${s.std_id})}" style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td>
+                                        <!-- <td th:text="*{s.std_courseid}">1305217</td>
+                                        <td th:text="*{s.sec_id}">1</td> -->
+                                        <td ><a href="#">Delete</a></td>
+                                        <!-- <td><a th:href="@{/delete/{std_courseid}/{sec_id}/{std_id}(std_courseid=${s.std_courseid}, sec_id=${s.sec_id} , std_id = ${s.std_id})}" style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td> -->
                                     </tr>
 
-
-                                    <!-- <tr>
-                                        <td>1</td>
-                                        <td>Ko</td>
-                                        <td>Sai</td>
-                                        <td>6531503178@lamduan.mfu.ac.th</td>
-                                        <td>1305217</td>
-                                        <td>1</td>
-                                        <td>2023-01-22</td>
-                                        <td><a href="#" style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Toke</td>
-                                        <td>Gyi</td>
-                                        <td>6531503132@lamduan.mfu.ac.th</td>
-                                        <td>1305215</td>
-                                        <td>3</td>
-                                        <td>2023-10-13</td>
-                                        <td><a href="#" style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>George</td>
-                                        <td>Lalrinchhana</td>
-                                        <td>6531503139@lamduan.mfu.ac.th</td>
-                                        <td>1501208</td>
-                                        <td>3</td>
-                                        <td>2023-12-25</td>
-                                        <td><a href="#" style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td>
-                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>

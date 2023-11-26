@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Profile</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <style type="text/css">
+
+            body{
+                margin:0;
+                padding:0;
+            }
+            .nav{
+                width: 100%;
+                height: 200px;
+                background-color: brown;
+                border-radius: 0px 0px 20px 20px;
+                position: relative;
+                top:0;
+            }
+            .nav h1{
+                color:#fff;
+                font-weight:bold;
+                margin:10px;
+                padding:10px;
+            }
+            .btn a{
+                font-size:20px;
+                color:#fff;
+                text-decoration:none; 
+            }
+            .back{
+                margin:10px;
+                padding:10px;
+
+                position:absolute;
+                left:0;
+                bottom:0;
+            }
+
+            .home{
+                margin:10px;
+                padding:10px;
+
+                position:absolute;
+                right:0;
+                bottom:0;
+            }
+
+            .view{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                width: 100%;
+                color: black;
+            }
+            .title{
+                line-height: 5px;
+                padding-top: 20px;
+                padding-bottom: 5px;
+                position: absolute;
+                transform: translateY(50%);
+            }
+            .bar{
+                position: absolute;
+                left: -33%;
+                bottom: 0;
+                width: 110px;
+                border: 4px solid brown;
+            }
+            #container{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                background-color: #f4f4f4;
+                width: 88%;
+                height: 50%;
+
+                position: absolute;
+                top: 40%;
+                left: 6%;
+
+                padding: 15px;
+                margin: 10px;
+                border-radius: 15px;
+            }
+            .container{
+                font-size: 20px;
+                font-weight: 600;
+                padding: 10px;
+            }
+            .status{
+                width: 250px;
+                background-color: bisque;
+                border-radius: 10px;
+                padding-left: 10px;
+                margin-bottom: 10px;
+            }
+            #st{
+                color: rgb(211, 61, 61);
+            }
+            .logout i{
+                font-size: 30px;
+                margin: 5px;
+                color: brown;
+                transform: translateY(20%);
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="nav"  >
+            <h1>Check-in Class</h1>
+            
+            <div class="btn" th:each=" student :${profile_info}" >
+                <a th:href="'/Std_home_page/' + ${student.std_email}" class="home">Home</a>
+
+            </div>
+        </div>
+
+        <div class="view">
+            <div class="title">
+                <h4>Profile</h4>
+                <div class="bar"></div>
+            </div>
+        </div>
+        <div id="container">
+            <div class="container">
+                <div class="text" th:each=" student :${profile_info}" >
+                    <p>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span th:text="${student.first_name} + ' ' + ${student.last_name}"></span> </p>
+                    <p>Student ID&nbsp;:<span th:text="${student.std_id}"></span> </p>
+                    <p>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<span th:text="${student.std_email}"></span></p>
+                    <div class="status">
+                        <span>Status:</span><span id="st">Student CURRENT</span>
+                    </div>
+                </div>
+                <div class="logout" > 
+                <a th:href="@{/login}">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Log Out</span>
+                </a>  
+                </div>
+            </div>
+        </div>
+        
+
+    </body>
+</html>

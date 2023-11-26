@@ -5,7 +5,9 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
         <style type="text/css">
+
 
             body{
                 padding: 0;
@@ -23,12 +25,14 @@
                 top:0;
             }
 
+
             .nav h2{
                 color:#fff;
                 font-weight:bold;
                 margin:10px;
                 padding:10px;
             }
+
 
             .profile{
                 position: absolute;
@@ -45,10 +49,11 @@
                 color: #fff;
             }
 
+
             .btn a{
                 font-size:20px;
                 color:#fff;
-                text-decoration:none; 
+                text-decoration:none;
             }
             /* end nav bar */
            
@@ -71,6 +76,7 @@
                 box-shadow: 1px 3px #c0c0c099;
             }
 
+
             .class,.teacher,.student{
                 border: 1px solid gray;
                 height: 40px;
@@ -80,6 +86,7 @@
                 margin: 20px 5px 10px 7px;
                 box-shadow: 1px 2px #c0c0c099;
             }
+
 
             .dashboard{
                 display: flex;
@@ -92,7 +99,9 @@
                 color: #3b3b3b;
                 /* float: left; */
 
+
             }
+
 
             .dashboard a i{
                 font-size: 40px;
@@ -100,7 +109,7 @@
                 transform:translateY(5px);
                 padding-right: 5px;
             }
-            
+           
             .ic{
                 color: #000;
                 text-decoration: none;
@@ -109,15 +118,19 @@
                 text-align: start;
                 font-size: 15px;
 
+
                 padding: 0 10px;
 
+
             }
+
 
             .ic i{
                 font-size: 20px;
                 transform:translateY(3px);
                 float: left;
             }
+
 
             .logout{
                 border-radius: 10px;
@@ -131,15 +144,18 @@
                 bottom: 2%;
             }
 
+
             /* end left menu */
 
+
             /* start main */
-        
+       
             .main .title{
                 padding: 30px 35px 30px 35px;
                 transform: translateX(10px);
                 color: gray;
             }
+
 
             .main h3{
                 margin-left: 19.5%;
@@ -166,6 +182,7 @@
                 row-gap: 20px;
             }
 
+
             .main .mstudents,.main .mclasses,.main .msysusers,.main .mteachers{
                 box-sizing: border-box;
                 display: inline-block;
@@ -174,6 +191,7 @@
                 border: 1px solid rgba(0, 0, 0, 0.8);
                 padding: 20px;
                 font-size: 20px;
+
 
                 border-style: none;
                 box-shadow: 3px 5px #9999;
@@ -190,21 +208,27 @@
 
 
 
+
+
+
+
     <body>
         <!-- start nav bar -->
         <div class="nav">
             <h2>Check-in Class</h2>
             <div class="profile">
-                <div class="icon"><a th:href="admin_home_page"><i class="fas fa-user-circle"></i></a></div>
+                <div class="icon"><a th:href="@{/admin_home_page}"><i class="fas fa-user-circle"></i></a></div>
                 <div class="info">
-                    <p><a th:href="admin_home_page">Administrator</a></p>
-                    <p><a th:href="admin_home_page"></a></p>
+                    <p><a th:href="@{/admin_home_page}">Administrator</a></p>
+                    <p><a th:href="@{/admin_home_page}"></a></p>
                 </div>
 
+
                 <!-- <div class="info" th:object="${admin}">
-                    <p><a th:href="admin_home_page">Administrator</a></p>
-                    <p><a th:href="admin_home_page" th:text="${admin.admin_email}"></a></p>
+                    <p><a th:href="@{/admin_home_page}">Administrator</a></p>
+                    <p><a th:href="@{/admin_home_page}" th:text="${admin.admin_email}"></a></p>
                 </div> -->
+
 
             </div>
         </div>
@@ -212,59 +236,37 @@
         <!-- start left menu -->
         <div class="left">
             <div class="dashboard">
-                <a th:href="admin_home_page"><i class="fas fa-tachometer-alt"></i>Dashboard</a>  
+                <a th:href="@{/admin_home_page}"><i class="fas fa-tachometer-alt"></i>Dashboard</a>  
             </div>
 
+
             <div class="class">
-                <a th:href="admin_create_class" class="ic"><i class="fas fa-chalkboard"></i>Create Class</a>
-                
-            </div>
-            <div class="teacher">
-                <a th:href="admin_create_lec" class="ic"><i class="fas fa-chalkboard-teacher"></i>Create Lecturer</a>
-                
-            </div>
-            <div class="student">
-                <a th:href="admin_create_std" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
+                <a th:href="@{/admin_create_class}" class="ic"><i class="fas fa-chalkboard"></i>Create Class</a>
                
             </div>
-            <button class="logout" onclick="location.href='/login'"> 
+            <div class="teacher">
+                <a th:href="@{/admin_create_lec}" class="ic"><i class="fas fa-chalkboard-teacher"></i>Create Lecturer</a>
+               
+            </div>
+            <div class="student">
+                <a th:href="@{/admin_create_std}" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
+               
+            </div>
+            <button class="logout" onclick="location.href='/login'">
                 <i class="fas fa-sign-out-alt"></i>
                 <span>Log Out</span>
 
             </button>
         </div>
 
-        <!-- <div class="left">
-            <div class="dashboard" th:object="${admin}">
-                <a th:href="admin_home_page"><i class="fas fa-tachometer-alt"></i>Dashboard</a>  
-            </div>
-
-            <div class="class">
-                <a th:href="'admin_create_class/' +${admin.admin_email}" class="ic"><i class="fas fa-chalkboard"></i>Create Class</a>
-                
-            </div>
-            <div class="teacher">
-                <a th:href="'admin_create_lec/' +${admin.admin_email}" class="ic"><i class="fas fa-chalkboard-teacher"></i>Create Lecturer</a>
-                
-            </div>
-            <div class="student">
-                <a th:href="'admin_create_std/' +${admin.admin_email}" class="ic"><i class="fas fa-user-graduate" ></i>Create Student</a>
-               
-            </div>
-            <button class="logout" onclick="location.href='/login'"> 
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Log Out</span>
-
-            </button>
-        </div> -->
-
         <!-- end left menu -->
         <!-- start main -->
         <div class="main">
             <h3 class="title">Administrator Dashboard</h3>
             <div class="maintop">
-                <a class="hm" href="admin_home_page.html">Home <a class="dhb">\ Dashboard</a></a>
+                <a class="hm" th:href="@{/admin_home_page}">Home <a class="dhb">\ Dashboard</a></a>
             </div>
+
 
             <div class="mbox">
                 <div class="mstudents">
@@ -272,19 +274,19 @@
                     <span><i class="fas fa-users"></i></span>
                     <p>70</p>
                 </div>
-    
+   
                 <div class="mclasses">
                     <p>Classes</p>
                     <span><i class="fas fa-chalkboard"></i></span>
                     <p>7</p>
                 </div>
-    
+   
                 <div class="msysusers">
                     <p>System Users</p>
                     <span><i class="fas fa-user-friends"></i></span>
                     <p>77</p>
                 </div>
-    
+   
                 <div class="mteachers">
                     <p>Teachers</p>
                     <span><i class="fas fa-chalkboard-teacher"></i></span>
@@ -292,10 +294,13 @@
                 </div>
             </div>
 
+
         </div>
         <!-- end main -->
 
+
     </body>
 
-    
+
+   
 </html>
