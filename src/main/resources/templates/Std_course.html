@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -47,6 +46,9 @@
                 color: #fff;
             }
 
+            .info{
+                color: #fff;
+            }
             .btn a{
                 font-size:20px;
                 color:#fff;
@@ -96,6 +98,23 @@
             .bar{
                 border: 4px solid #A41313;
             }
+            .section-info {
+                padding-top: 10px;
+                width: fit-content;
+                margin-left: 438px;
+                font-weight: bold;
+            }
+            .thsec{
+                position: absolute;
+                transform: translateY(-20px);
+                left: 52%;
+                font-weight: bold;
+            }
+            .thlec{
+                position: absolute;
+                left:26%;
+                transform: translateY(-9px);
+            }
 
             .lect-name{
                 display: flex;
@@ -110,12 +129,10 @@
                 position:relative;
             }
 
-            .pf-pic{
-                height:30px;
-                width: 30px;
-                border-radius: 15px;
-                margin-top: 5px;
-                margin-left: 5px;
+            .pf i{
+                font-size: 30px;
+                padding: 5px;
+                transform: translateX(5px) translateY(10px);
             }
 
             .pf-name{
@@ -129,6 +146,7 @@
             }
             .pf-name span{
                 color: rgb(124, 124, 124);
+                padding-left: 10px;
                
             }
 
@@ -201,21 +219,17 @@
                 bottom: 8%;
                 padding: 10px ;
                 border-radius: 10px;
+                font-weight: bold;
                 border: none;
-                background-color: #a52424;
+                background-color: white;
+                color: red;
                 /* box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); */
                 width: 80px;
                 height: 40px;
-                padding:5px;
                 
             }
 
-            .show-button span{
-                color:#ffffff;
-                font-size: medium;
-                padding: 5px;
-                
-            }
+            
 
            /* .announce{
             position: fixed;
@@ -243,15 +257,29 @@
 
            .attendance_form{
             border-radius: 10px;
-            background-color: rgb(121, 166, 174);
+            background-color: #A41313;
             position: fixed;
             bottom: 0;
             padding:10px;
             height: 50px;
-            width: 68%;
-            left:15.5%;
+            width: 65.5%;
+            left:16.5%;
            }
-           
+
+           .input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Adjust the gap between input and label */
+            }
+
+            .input-container label {
+            white-space: nowrap; /* Prevents the asterisk from going to the next line */
+            font-size: 12px;
+            color: white;
+            display: inline-flex;
+            align-items: last baseline;
+            }
+
            
             .right_section{
                 flex: 1;
@@ -259,14 +287,16 @@
                 margin-left: 20px;
             }
             
-            .check-attendance, .list-std{
-                border: none;
-                background-color: white;
-                margin-bottom: 8px;
-            }
-
             .list-icon, .att-icon{
                 height: 30px;
+                text-decoration: none;
+                color: #000;
+                font-size: 20px;
+            }
+            .list-icon i,.att-icon i{
+                font-size: 22px;
+                color: #A41313;
+                padding-right: 6px;
             }
         </style>
     </head>
@@ -295,18 +325,18 @@
                 <!-- <h4 th:text=" ${ course.course_name}">/h4> -->
                     <h4 th:text="${selectedCourse.course_name}"></h4>
                 <div class="bar"></div>
-                <span th:object="${selected}">
-                    <span th:text="${selected}"></span>
-                </span>
+                <div th:object="${selected}">
+                    <p class="section-info">Section - 0<span class="thsec" th:text="${selected}"></span></p>
+                </div>
 
-                <div class="lect-name">Lecturer Name- Aj.Sujitra Arwatchanaukul</div>
+                <div class="lect-name" >Lecturer Name- <span th:text="${lecturer.first_name} + ' ' + ${lecturer.last_name}"></span>l</div>
                 
                 <div th:each="post : ${new_posts}">
                     <div class="pf">
-                         <img class="pf-pic" src="profile_pic.png">
+                        <i class="fas fa-user-circle"></i>
                         <div class="pf-name">
-                            <p ></p><br> <span>Lecturer</span>
-                        </div>
+                            <p th:text="${lecturer.first_name} + ' ' + ${lecturer.last_name}"></p><br> <span>Lecturer</span>
+                         </div>
                         
                 </div>
                 <div class="materials" >
@@ -316,23 +346,23 @@
                 </div>
                 </div>
                 <div class="pf">
-                    <img class="pf-pic" src="profile_pic.png">
+                    <i class="fas fa-user-circle"></i>
                    <div class="pf-name">
-                      Sujitra<br> <span>Lecturer</span>
+                      <p th:text="${lecturer.first_name} + ' ' + ${lecturer.last_name}"></p><br> <span>Lecturer</span>
                    </div>
                    
            </div>
            <span th:object="${student_info}">
              <div class="announce" th:object="${selectedCourse}" >
             <form class="attendance_form"  method="post" th:action="@{'/attendance/'+ ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${student_info.std_email}}" th:object="${att}">
-                <label for="std_input">Enter attendance code <span style="color: red;">*</span></label>
-                            <input type="text" id="std_input" th:field="*{std_input}" required/>
-                 <label for="week_no">Week number <span style="color: red;">*</span></label>
-                            <input type="number" id="week_no" th:field="*{week_no}" required/>
-    
-            <a >
-                <button class="show-button" type="submit"><span>Submit</span></button>
-            </a>
+                <div class="input-container">
+                    <label for="std_input">Enter attendance code <span style="color: #f5a8a8;">*</span></label>
+                    <input type="text" id="std_input" th:field="*{std_input}" required/>
+                    <label for="week_no">Week number <span style="color: #f5a8a8;">*</span></label>
+                    <input  type="number" id="week_no" th:field="*{week_no}" required/>
+                    
+                </div>
+                <button class="show-button" type="submit">submit</button>
             </form>
             
         </div>
@@ -343,19 +373,18 @@
 
             <div class="right_section" th:object="${selectedCourse}">
                
-                <a th:href="@{'/Std_home_page/Std_std_list/' + ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${student_info.std_email}}">
-                    <button class="list-std"> 
-                        
-                        <img class="list-icon" src="users-three.svg"> Student List
-                    </button>
+                <a class="list-icon" th:href="@{'/Std_home_page/Std_std_list/' + ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${student_info.std_email}}">
+                    
+                        <i class="fas fa-users"></i>Student List
+                    
                 </a>
                     
                     <br>
 
-                <a th:href="@{'/Std_home_page/Std_total_attendance/' + ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${student_info.std_email}}">
-                    <button class="check-attendance"> 
-                        <img class="att-icon" src="fact_check.svg"> View Attendance
-                    </button>
+                <a class="att-icon" th:href="@{'/Std_home_page/Std_total_attendance/' + ${selectedCourse.course_id} + '/' +${sec_no}+ '/' + ${student_info.std_email}}">
+                    
+                        <i class="far fa-list-alt"></i> View Attendance
+                    
                 </a>
                 
             </div>
