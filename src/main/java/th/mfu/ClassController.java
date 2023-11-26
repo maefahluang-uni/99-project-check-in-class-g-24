@@ -143,13 +143,42 @@ public class ClassController {
                 if (account != null && validatePassword(user.getPassword(), account.getPassword())) {
                 // Password is correct, redirect to the view course page
                 System.out.println("excuted for lec");
-                return "redirect:/Lec_home_page/"+ userEmail;
+
+                Lecturer lecturer = lecRepo.findByLec_email(userEmail);
+                try{
+                    if( !(lecturer.equals(null))){
+
+                    model.addAttribute("lecturer_info", lecturer);
+
+                    List<Course> courses = courseRepo.findByLecturerEmail(userEmail);
+                    model.addAttribute("courses", courses);
+                    model.addAttribute("sections", secRepo.findSecNoByLecEmail(userEmail));
+
+                        System.out.println("Lecturer is not null");
+
+                    return "redirect:/Lec_home_page/"+ userEmail;
+
+                    }
+                    System.out.println("Lecturer is null");
+                    Account u = new Account();
+                    model.addAttribute("user", u );
+                    return "redirect:/login";
+                }
+                catch(Exception e){
+                    System.out.println("Lecturer is null");
+                    Account u = new Account();
+                    model.addAttribute("user", u );
+                    return "redirect:/login";
+
+                }        
             }
+
             } else if (userEmail.endsWith("@gmail.com")) {
                 account = accRepo.findByAdmin_email(userEmail);
                 if (account != null && validatePassword(user.getPassword(), account.getPassword())) {
                 // Password is correct, redirect to the view course page
-                System.out.println("excuted for admin");
+
+
                 return "admin_home_page";
             }
             }
@@ -601,64 +630,81 @@ public class ClassController {
     @GetMapping("admin_create_class")
     public String admin_create_class(Model model){
 
-
         Course course = new Course();
         model.addAttribute("course",course);
-
 
         Lecturer lec = new Lecturer();
         model.addAttribute("lec", lec);
 
-
         Section sec = new Section();
         model.addAttribute("sec", sec);
 
-
-        List<Course> courses = courseRepo.findAll();
-        model.addAttribute("courses", courses);
-
-
-
+        List<Section> sections = (List<Section>) secRepo.findAll();
+        model.addAttribute("sections", sections);
 
         return "/admin_create_class";
     }
 
 
-    @PostMapping("/admin_create_class")
-    public String admin_create_classP(Model model, @ModelAttribute Course course,@ModelAttribute Lecturer lec , @ModelAttribute Section sec) {
+    @PostMapping("/ad_create_class")
+    public String admin_create_classP(Model model, @ModelAttribute Course course, @ModelAttribute Lecturer lec, @ModelAttribute Section sec) {
+
+        System.out.println("========= This is lec_id from model attribute =====> " + lec.getLec_id());
+        System.out.println(course.getCourse_id());
+        System.out.println(course.getCourse_name());
+        System.out.println(course.getCredit());
+        System.out.println("========== Before course save to course repo.");
+    
+        // Save the course entity and get the generated ID
+        Course cou =  courseRepo.save(course);
+        int i = cou.getCourse_id();
+        System.out.println("========== After course save to course repo.");  
+    
+        sec.setLec_id(lec.getLec_id());
+        sec.setCourse_id(i);
+        System.out.println("========== Before section save (sec_no)");
+        System.out.println(sec.getSec_no());
+        System.out.println("=======================");
+        System.out.println(sec.getCourse_id());
+        System.out.println(i);
+        System.out.println("=======================");
+        System.out.println(sec.getLec_id());
+        System.out.println("=======================");
+        Section sc = secRepo.save(sec);
+        List<Section> sections = secRepo.findAll();
+        model.addAttribute("sections", sections);
+            // Ensure 'lec' is in the model
+    model.addAttribute("lec", new Lecturer());
+    model.addAttribute("sec", new Section());
+
+    return "redirect:/admin_create_class";
+}
+
+    @GetMapping("delete/{course_id}/{sec_no}")
+    public String class_delete(Model model , @PathVariable int course_id , @PathVariable int sec_no ){
 
 
-        Course c = new Course();
-        Lecturer l = new Lecturer();
-        Section s = new Section();
-        if( !(course.getCourse_name().equals(null))){
-            courseRepo.save(course);    
-            secRepo.save(sec);
-        }
-                   
-        model.addAttribute("course",c);
-        model.addAttribute("lec", l);
-        model.addAttribute("sec", s);
+        Long id = secRepo.findByCourse_idAndSec_no(course_id, sec_no).getSec_id();
+        
 
+        // stdRepo.deleteAll(stdRepo.findByCourse_idAndSec_id(course_id, id));
+        secRepo.delete(secRepo.findByCourse_idAndSec_no(course_id, sec_no));
+        // courseRepo.delete(courseRepo.findByCourse_id(course_id));
 
-        List<Course> courses = courseRepo.findAll();
-        model.addAttribute("courses", courses);
+        Course course = new Course();
+        model.addAttribute("course",course);
 
+        Lecturer lec = new Lecturer();
+        model.addAttribute("lec", lec);
+
+        Section sec = new Section();
+        model.addAttribute("sec", sec);
+
+        List<Section> sections = secRepo.findAll();
+        model.addAttribute("sections", sections);
 
         return "admin_create_class";
     }
-
-
-        //Admin delete class
-        // @GetMapping("delete/{course_id}/{sec_no}")
-        // public String class_delete(Model model , @PathVariable int course_id , @PathVariable int sec_no ){
-
-
-        //     return "admin_create_class";
-        // }
-
-
-        //Admin create lecturer
 
 
     @GetMapping("admin_create_lec")
@@ -679,16 +725,42 @@ public class ClassController {
 
         Lecturer l = new Lecturer();  
         model.addAttribute("lecturer", l);
-        if( !(lecRepo.findByLec_id(lec.getLec_id()).equals(null)) ){
-            lecRepo.save(lec);
-        }
 
+        try{
+
+            Lecturer lfind = lecRepo.findByLec_email(lec.getLec_email());
+            if(lfind == null ){
+
+                Lecturer lsave = lecRepo.save(lec);
+                if( accRepo.findByLec_email(l.getLec_email()) != null){
+
+                }
+                else{
+                    
+                    String pw = l.getLec_id();
+                    Account acc = new Account();
+                    acc.setPassword(pw);
+                    acc.setLec_email(l.getLec_email());
+                    acc.setAdmin_email(null);
+                    acc.setStd_email(null);
+                    acc.setAcc_id(6l);
+                
+                    accRepo.save(acc);
+
+                }
+
+
+            }
+        }catch(Exception exception){
+
+            return "redirect:/admin_create_lec";
+        }
 
         List<Lecturer> lecturers = lecRepo.findAll();
         model.addAttribute("lecturers", lecturers);
 
 
-        return "admin_create_lec";
+        return "redirect:/admin_create_lec";
 
 
     }
@@ -696,48 +768,109 @@ public class ClassController {
 
    
     //Need to fix
-    @GetMapping("/delete/{Lec_id}")
+    @GetMapping("/deleteL/{Lec_id}")
     public String deleteCourse(@PathVariable("Lec_id") String Lec_id,Model model) {
    
         Lecturer lecturer = new Lecturer();
    
         model.addAttribute("lecturer", lecturer);
-        Lecturer lec = lecRepo.findByLec_id(Lec_id);
+        try{
+
+            Lecturer lec = null;
+            lec =  lecRepo.findByLec_id(Lec_id);
+            lecRepo.delete(lec);
+
+        }catch(Exception exception){
+            List<Lecturer> lecturers = lecRepo.findAll();
+            model.addAttribute("lecturers", lecturers);
    
-        lecRepo.delete(lec);
+        return "admin_create_lec";
+        }
+
         List<Lecturer> lecturers = lecRepo.findAll();
         model.addAttribute("lecturers", lecturers);
    
         return "admin_create_lec";
-    }
-   
+    }   
+
+    // @GetMapping("/delete/{lec_id}")
+    // public String deleteCourse(@PathVariable("lec_id") String lec_id, Model model) {
+    
+    //     Lecturer lecturer = lecRepo.findByLec_id(lec_id);
+    
+    //     if (lecturer != null) {
+    //         // Optionally, you can remove this line if you have cascade deletion set up
+    //         List<Section> sec = secRepo.findAllByLec_id(lec_id);
+    //         secRepo.deleteAll(sec);
+    
+    //         lecRepo.delete(lecturer);
+    //     }
+    //     Lecturer l = new Lecturer();
+    //     model.addAttribute("lecturer", l);
+    
+    //     List<Lecturer> lecturers = lecRepo.findAll();
+    //     model.addAttribute("lecturers", lecturers);
+    
+    //     return "admin_create_lec";
+    // }
+
         //Admin create student
    
-    @GetMapping("admin_create_std")
-    public String admin_create_std(Model model){
-   
-        Student student = new Student();
-        model.addAttribute("student", student);
-        List<Student> students = stdRepo.findAll();
-        model.addAttribute("students", students);
-   
-        return "/admin_create_std";
-    }
+        @GetMapping("admin_create_std")
+        public String admin_create_std(Model model){
+    
+            Student student = new Student();
+            model.addAttribute("student", student);
+    
+            Section section = new Section();
+            model.addAttribute("section", section);
+    
+            Course course = new Course();
+            model.addAttribute("course", course);
+    
+            List<Student> students = stdRepo.findAll();
+            model.addAttribute("students", students);
+    
+            return "/admin_create_std";
+        }
 
 
     @PostMapping("/admin_create_std")
-    public String admin_create_stdP(Model model , @ModelAttribute Student std) {
+    public String admin_create_stdP(Model model , @ModelAttribute Student student , @ModelAttribute Section section , @ModelAttribute Course course) {
+
+        System.out.println(student.getStd_id());
+        System.out.println(section.getSec_no());
+        System.out.println(course.getCourse_id());
+
+        Section psec = secRepo.findByCourse_idAndSec_no(course.getCourse_id(), section.getSec_no());    
+        student.setSec_id(psec.getSec_id());
+
+        stdRepo.save(student);
+        String pw = student.getStd_id().toString();
 
 
-        Student student = new Student();
-        model.addAttribute("student", student);
-        if( !(stdRepo.findByStd_email(std.getStd_email()).equals(null)) ){
-            stdRepo.save(std);
+        stdRepo.save(student);
+
+         try{
+
+            accRepo.findByStd_email(student.getStd_email());
+
+        }catch(NullPointerException exception){
+        
+            Account acc = new Account();
+            acc.setPassword(pw);
+            acc.setStd_email(student.getStd_email());
+            acc.setAdmin_email(null);
+            acc.setLec_email(null);
+            acc.setAcc_id(6l);
+        
+            accRepo.save(acc);
+
         }
 
-        List<Student> students = stdRepo.findAll();
-        model.addAttribute("students", students);
-        return "admin_create_std";
+        return "redirect:/admin_create_std";
+
     }
+    
 
 }

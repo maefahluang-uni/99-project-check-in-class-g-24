@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,39 +21,38 @@ import javax.persistence.Table;
 public class Section {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sec_id")
     private Long sec_id;
     private int course_id;
     private String lec_id;
     private int sec_no;
-    
-    @ManyToMany(cascade = CascadeType.ALL)
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id", insertable = false, updatable = false)
+    private Course course;
+
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "lec_id", insertable = false, updatable = false)
+    private Lecturer lecturer;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
         name = "enrollments",  // This is the name of the join table
         joinColumns = @JoinColumn(name = "sec_id"),  
         inverseJoinColumns = @JoinColumn(name = "std_num")  
     )
     private List<Student> student;
-
-    
-
     public Section(){
-
     }
-
     public Section(Long sec_id) {
         this.sec_id = sec_id;
     }
-
-
     public Long getSec_id() {
         return sec_id;
     }
 
-    public void setSec_id(Long sec_id) {
-        this.sec_id = sec_id;
-    }
 
     public int getCourse_id() {
         return course_id;
@@ -84,6 +84,21 @@ public class Section {
 
     public void setStudent(List<Student> student) {
         this.student = student;
+    }
+
+    public void setCourse(Course course) {
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public Lecturer getLecturer() {
+        return lecturer;
+    }
+
+    public void setLecturer(Lecturer lecturer) {
+        this.lecturer = lecturer;
     }
     
 

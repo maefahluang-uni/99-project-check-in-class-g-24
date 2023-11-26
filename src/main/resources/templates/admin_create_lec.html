@@ -291,16 +291,6 @@
                                 <label for="lec_id">Lecturer ID<span style="color: red;">*</span></label><br>
                                 <input type="text" id="lec_id" th:field="*{lec_id}" required/><br>
                             </div>
-                            <!-- <div class="lec_cid">
-                                <label for="course_id">Enter Course Code<span style="color: red;">*</span></label><br>
-                                <input type="text" id="lec_cid" th:field="*{lec_cid}" required placeholder="--Select Course Code--"/><br>
-                            </div> -->
-
-                            <!-- <div class="lec_sec">
-                                <label for="sec_id">Select Section<span style="color: red;">*</span></label><br>
-                                <input type="text" id="lec_sec" th:field="lec_sec" required placeholder="--Select Section--"/><br>
-                            </div> -->
-                            
                             <button type="submit" class="save">Save</button>
                         </div>
                     </form>
@@ -329,8 +319,8 @@
                                         <td th:text="${lec.last_name}">Last Name</td>
                                         <td th:text="${lec.lec_id}">Lecturer ID</td>
                                         <td th:text="${lec.lec_email}">Email</td>
-                                        <td>Delete</td>
-                                        <!-- <td><a th:href="@{/delete/{lec_id}(lec_id=${lec.lec_id})}"  style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td> -->
+                                        <!-- <td>Delete</td> -->
+                                        <td><a th:href="@{/deleteL/{lec_id}(lec_id=${lec.lec_id})}"  style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td>
                                     </tr>
                                 </tbody>
                             </table>

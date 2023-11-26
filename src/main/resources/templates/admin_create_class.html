@@ -276,7 +276,7 @@
             <div class="form">
                 <div class="top">
                     <div class="elements">
-                        <form th:action="@{/admin_create_class}" method="post">
+                        <form th:action="@{/ad_create_class}" method="post">
                             <div th:object="${course}">
 
                                 <div class="cl">
@@ -322,27 +322,31 @@
                 <p style="color: blue;">All Classes</p>
                 <div class="row">
                     <div class="col-md-12">
-                        <table id="mytable" class="table border">
+                        <table id="mytable" class="table border" >
                             <thead class="thead">
                                 <tr>
                                     <th>Course Code</th>
                                     <th>Class Name</th>
                                     <th>Course Credit</th>
-                                    <!-- <th>Lecturer id</th> -->
-                                    <!-- <th>Section</th> -->
+                                    <th>Lecturer id</th> 
+                                    <th>Section</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
-                            <tbody th:each="c : ${courses}">
+                            <tbody th:each="s : ${sections}">
                                 <tr>
-                                    <td th:text="${c.course_id}"></td>
-                                    <td th:text="${c.course_name}"></td>
-                                    <td th:text="${c.credit}"></td>
-                                    <!-- <td th:text="${c.Lec_id}"></td> -->
-                                    <!-- <td th:text="${c.courseSec}"></td> -->
-                                    <td><a href="#"></i> Delete</a></td>
-                                    <!-- <td><a th:href="@{/delete/{course_id}/{sec_no}(course_id=${c.courseId}, sec_no=${c.sec_no})}" style="text-decoration:none;"><i class="fas fa-trash-alt"></i> Delete</a></td> -->
+                                    <td th:text="${s.course.course_id}"></td>
+                                    <td th:text="${s.course.course_name}"></td>
+                                    <td th:text="${s.course.credit}"></td>
+                                    <td th:text="${s.lecturer.lec_id}"></td>                                    
+                                    <td th:text="${s.sec_no}"></td>
+                                    <td>
+                                        <a th:href="@{/delete/{course_id}/{sec_no}(course_id=${s.course.course_id}, sec_no=${s.sec_no})}" style="text-decoration:none;">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </a>
+                                    </td>
                                 </tr>
+                            </tbody>
                             </tbody>
                         </table>
                     </div>

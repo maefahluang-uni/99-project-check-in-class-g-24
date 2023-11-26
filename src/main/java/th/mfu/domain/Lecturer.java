@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -27,6 +28,13 @@ public class Lecturer {
 
     @OneToOne (cascade = CascadeType.ALL)
     private Account account;
+    
+     @OneToMany(mappedBy = "lecturer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Section> sections;
+
+    //  @ManyToOne // Assuming many lecturers can be associated with one section
+    // @JoinColumn(name = "sec_id") // Adjust this based on your actual database schema
+    // private Section section; 
 
 
     public Lecturer(){
